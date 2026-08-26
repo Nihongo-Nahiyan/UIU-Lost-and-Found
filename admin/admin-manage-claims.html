@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Claims - UIU Lost & Found</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-box">L&F</div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-label">
+                Main
+            </div>
+
+            <a href="admin-dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="admin-approve-items.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                Approve Items
+                <span class="nav-badge">4</span>
+            </a>
+
+            <a href="admin-manage-claims.html"
+               class="nav-item active">
+
+                <span class="nav-icon">📋</span>
+                Manage Claims
+
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="admin-manage-categories.html" class="nav-item">
+                <span class="nav-icon">🗂️</span>
+                Categories
+            </a>
+
+            <a href="admin-manage-users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+
+            <a href="admin-reports.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-row">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+                    <div class="user-name">
+                        Admin User
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="login.html" class="logout-btn">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-title">
+                    Manage Claims
+                </span>
+
+                <span class="topbar-sub">
+                    Review and process ownership claims
+                </span>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <span class="badge badge-pending">
+                    12 Pending
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="content">
+
+
+            <!-- CLAIM INFORMATION CARDS -->
+            <div class="kpi-grid">
+
+
+                <div class="kpi-card accent-yellow">
+
+                    <div>
+                        <div class="kpi-label">
+                            Pending
+                        </div>
+
+                        <div class="kpi-value">
+                            12
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        ⏳
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-green">
+
+                    <div>
+                        <div class="kpi-label">
+                            Approved
+                        </div>
+
+                        <div class="kpi-value">
+                            34
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        ✔️
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-orange">
+
+                    <div>
+                        <div class="kpi-label">
+                            Rejected
+                        </div>
+
+                        <div class="kpi-value">
+                            8
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        ❌
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FILTER -->
+            <div class="filter-bar">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search claims">
+
+
+                <select class="form-control">
+
+                    <option>All Status</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="section-row">
+                <h3>All Claims</h3>
+            </div>
+
+
+
+            <!-- CLAIM TABLE -->
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>CLAIM ID</th>
+                            <th>ITEM</th>
+                            <th>CLAIMANT</th>
+                            <th>STUDENT ID</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td class="td-mono">
+                                CLM-001
+                            </td>
+
+                            <td class="td-bold">
+                                Black Leather Wallet
+                            </td>
+
+                            <td>
+                                Mizanur Rahman
+                            </td>
+
+                            <td class="td-mono">
+                                011221456
+                            </td>
+
+                            <td>
+                                <span class="badge badge-pending">
+                                    Pending
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-success btn-xs">
+                                        Approve
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Reject
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-mono">
+                                CLM-002
+                            </td>
+
+                            <td class="td-bold">
+                                HP Laptop Charger
+                            </td>
+
+                            <td>
+                                Nadia Rahman
+                            </td>
+
+                            <td class="td-mono">
+                                011183920
+                            </td>
+
+                            <td>
+                                <span class="badge badge-pending">
+                                    Pending
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-success btn-xs">
+                                        Approve
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Reject
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-mono">
+                                CLM-003
+                            </td>
+
+                            <td class="td-bold">
+                                Sony Headphones
+                            </td>
+
+                            <td>
+                                Fahim Hossain
+                            </td>
+
+                            <td class="td-mono">
+                                011145670
+                            </td>
+
+                            <td>
+                                <span class="badge badge-approved">
+                                    Approved
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <button class="btn btn-secondary btn-xs">
+                                    View
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

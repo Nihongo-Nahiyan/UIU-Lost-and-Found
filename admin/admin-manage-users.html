@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Users - UIU Lost & Found</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-label">
+                Main
+            </div>
+
+            <a href="admin-dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="admin-approve-items.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                Approve Items
+                <span class="nav-badge">4</span>
+            </a>
+
+            <a href="admin-manage-claims.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                Manage Claims
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="admin-manage-categories.html" class="nav-item">
+                <span class="nav-icon">🗂️</span>
+                Categories
+            </a>
+
+            <a href="admin-manage-users.html"
+               class="nav-item active">
+
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+
+            <a href="admin-reports.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-row">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <div class="user-name">
+                        Admin User
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a href="login.html" class="logout-btn">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-title">
+                    Manage Users
+                </span>
+
+                <span class="topbar-sub">
+                    View registered accounts
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="content">
+
+
+            <!-- USER INFORMATION -->
+            <div class="kpi-grid">
+
+
+                <div class="kpi-card accent-teal">
+
+                    <div>
+                        <div class="kpi-label">
+                            Total Students
+                        </div>
+
+                        <div class="kpi-value">
+                            520
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        🎓
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-orange">
+
+                    <div>
+                        <div class="kpi-label">
+                            Admins
+                        </div>
+
+                        <div class="kpi-value">
+                            1
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-green">
+
+                    <div>
+                        <div class="kpi-label">
+                            New This Month
+                        </div>
+
+                        <div class="kpi-value">
+                            18
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon">
+                        ✨
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+            <div class="filter-bar">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search user">
+
+
+                <select class="form-control">
+
+                    <option>All Roles</option>
+                    <option>Student</option>
+                    <option>Admin</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="section-row">
+                <h3>Registered Users</h3>
+            </div>
+
+
+
+            <!-- USER TABLE -->
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>USER</th>
+                            <th>STUDENT ID</th>
+                            <th>EMAIL</th>
+                            <th>ROLE</th>
+                            <th>REPORTS</th>
+                            <th>ACTION</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Fahim Hossain
+                            </td>
+
+                            <td class="td-mono">
+                                011183920
+                            </td>
+
+                            <td class="td-muted">
+                                fahim@uiu.ac.bd
+                            </td>
+
+                            <td>
+                                <span class="badge badge-student">
+                                    Student
+                                </span>
+                            </td>
+
+                            <td>
+                                3
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-secondary btn-xs">
+                                        View
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Remove
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Nadia Rahman
+                            </td>
+
+                            <td class="td-mono">
+                                011221456
+                            </td>
+
+                            <td class="td-muted">
+                                nadia@uiu.ac.bd
+                            </td>
+
+                            <td>
+                                <span class="badge badge-student">
+                                    Student
+                                </span>
+                            </td>
+
+                            <td>
+                                5
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-secondary btn-xs">
+                                        View
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Remove
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Tanvir Ahmed
+                            </td>
+
+                            <td class="td-mono">
+                                011094830
+                            </td>
+
+                            <td class="td-muted">
+                                tanvir@uiu.ac.bd
+                            </td>
+
+                            <td>
+                                <span class="badge badge-student">
+                                    Student
+                                </span>
+                            </td>
+
+                            <td>
+                                2
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-secondary btn-xs">
+                                        View
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Remove
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Admin User
+                            </td>
+
+                            <td class="td-mono">
+                                ADM-001
+                            </td>
+
+                            <td class="td-muted">
+                                admin@uiu.ac.bd
+                            </td>
+
+                            <td>
+                                <span class="badge badge-admin">
+                                    Admin
+                                </span>
+                            </td>
+
+                            <td>
+                                -
+                            </td>
+
+                            <td>
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Protected
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

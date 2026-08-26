@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - UIU Lost & Found</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-label">
+                Main
+            </div>
+
+            <a href="admin-dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="admin-approve-items.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                Approve Items
+                <span class="nav-badge">4</span>
+            </a>
+
+            <a href="admin-manage-claims.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                Manage Claims
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="admin-manage-categories.html" class="nav-item">
+                <span class="nav-icon">🗂️</span>
+                Categories
+            </a>
+
+            <a href="admin-manage-users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+
+            <a href="admin-reports.html"
+               class="nav-item active">
+
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-row">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <div class="user-name">
+                        Admin User
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a href="login.html" class="logout-btn">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-title">
+                    Statistics & Reports
+                </span>
+
+                <span class="topbar-sub">
+                    Lost and found activity overview
+                </span>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="btn btn-primary btn-sm">
+                    Export Report
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="content">
+
+
+            <!-- STATISTICS -->
+            <div class="kpi-grid">
+
+
+                <div class="kpi-card accent-orange">
+
+                    <div>
+
+                        <div class="kpi-label">
+                            Total Lost Reports
+                        </div>
+
+                        <div class="kpi-value">
+                            58
+                        </div>
+
+                        <div class="kpi-sub">
+                            All time
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-icon">
+                        🔍
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-blue">
+
+                    <div>
+
+                        <div class="kpi-label">
+                            Found Items
+                        </div>
+
+                        <div class="kpi-value">
+                            84
+                        </div>
+
+                        <div class="kpi-sub">
+                            Approved
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-icon">
+                        ✅
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-green">
+
+                    <div>
+
+                        <div class="kpi-label">
+                            Approved Claims
+                        </div>
+
+                        <div class="kpi-value">
+                            34
+                        </div>
+
+                        <div class="kpi-sub">
+                            Items returned
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-icon">
+                        ✔️
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card accent-purple">
+
+                    <div>
+
+                        <div class="kpi-label">
+                            Resolved Cases
+                        </div>
+
+                        <div class="kpi-value">
+                            29
+                        </div>
+
+                        <div class="kpi-sub">
+                            Successfully resolved
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-icon">
+                        🤝
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="section-row">
+
+                <h3>Category Report</h3>
+
+                <button class="btn btn-secondary btn-sm">
+                    Export CSV
+                </button>
+
+            </div>
+
+
+
+            <!-- CATEGORY REPORT TABLE -->
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>LOST</th>
+                            <th>FOUND</th>
+                            <th>TOTAL</th>
+                            <th>SHARE</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Electronics
+                            </td>
+
+                            <td>
+                                <span class="badge badge-lost">
+                                    18
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge badge-found">
+                                    15
+                                </span>
+                            </td>
+
+                            <td>
+                                33
+                            </td>
+
+                            <td>
+
+                                <div class="prog-row">
+
+                                    <div class="prog-bar">
+
+                                        <div
+                                            class="prog-fill"
+                                            style="width:32%">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="prog-pct">
+                                        32%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Documents
+                            </td>
+
+                            <td>
+                                <span class="badge badge-lost">
+                                    12
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge badge-found">
+                                    9
+                                </span>
+                            </td>
+
+                            <td>
+                                21
+                            </td>
+
+                            <td>
+
+                                <div class="prog-row">
+
+                                    <div class="prog-bar">
+
+                                        <div
+                                            class="prog-fill"
+                                            style="width:20%">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="prog-pct">
+                                        20%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Accessories
+                            </td>
+
+                            <td>
+                                <span class="badge badge-lost">
+                                    10
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge badge-found">
+                                    8
+                                </span>
+                            </td>
+
+                            <td>
+                                18
+                            </td>
+
+                            <td>
+
+                                <div class="prog-row">
+
+                                    <div class="prog-bar">
+
+                                        <div
+                                            class="prog-fill"
+                                            style="width:17%">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="prog-pct">
+                                        17%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Clothing
+                            </td>
+
+                            <td>
+                                <span class="badge badge-lost">
+                                    8
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge badge-found">
+                                    6
+                                </span>
+                            </td>
+
+                            <td>
+                                14
+                            </td>
+
+                            <td>
+
+                                <div class="prog-row">
+
+                                    <div class="prog-bar">
+
+                                        <div
+                                            class="prog-fill"
+                                            style="width:14%">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="prog-pct">
+                                        14%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Bags
+                            </td>
+
+                            <td>
+                                <span class="badge badge-lost">
+                                    6
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge badge-found">
+                                    5
+                                </span>
+                            </td>
+
+                            <td>
+                                11
+                            </td>
+
+                            <td>
+
+                                <div class="prog-row">
+
+                                    <div class="prog-bar">
+
+                                        <div
+                                            class="prog-fill"
+                                            style="width:11%">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="prog-pct">
+                                        11%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

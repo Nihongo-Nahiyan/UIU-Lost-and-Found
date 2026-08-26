@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Categories - UIU Lost & Found</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-label">
+                Main
+            </div>
+
+            <a href="admin-dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="admin-approve-items.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                Approve Items
+                <span class="nav-badge">4</span>
+            </a>
+
+            <a href="admin-manage-claims.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                Manage Claims
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="admin-manage-categories.html"
+               class="nav-item active">
+
+                <span class="nav-icon">🗂️</span>
+                Categories
+            </a>
+
+            <a href="admin-manage-users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+
+            <a href="admin-reports.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-row">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <div class="user-name">
+                        Admin User
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a href="login.html" class="logout-btn">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-title">
+                    Manage Categories
+                </span>
+
+                <span class="topbar-sub">
+                    Add or remove item categories
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="content">
+
+
+            <div class="chart-grid-2">
+
+
+                <!-- ADD CATEGORY -->
+                <div>
+
+                    <div class="section-row">
+                        <h3>Add New Category</h3>
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="form-group">
+
+                            <label>
+                                Category Name
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Example: Jewellery">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Icon
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Example: 💍">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                placeholder="Enter category description">
+                            </textarea>
+
+                        </div>
+
+
+                        <button class="btn btn-primary">
+                            Add Category
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EXISTING CATEGORIES -->
+                <div>
+
+                    <div class="section-row">
+                        <h3>Existing Categories</h3>
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <div>
+
+                                <div class="card-title">
+                                    💻 Electronics
+                                </div>
+
+                                <div class="card-sub">
+                                    Phones, laptops and chargers
+                                </div>
+
+                            </div>
+
+                            <div class="td-actions">
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <div>
+
+                                <div class="card-title">
+                                    📄 Documents
+                                </div>
+
+                                <div class="card-sub">
+                                    ID cards and documents
+                                </div>
+
+                            </div>
+
+                            <div class="td-actions">
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <div>
+
+                                <div class="card-title">
+                                    🎒 Bags
+                                </div>
+
+                                <div class="card-sub">
+                                    Backpacks and handbags
+                                </div>
+
+                            </div>
+
+                            <div class="td-actions">
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <div>
+
+                                <div class="card-title">
+                                    👕 Clothing
+                                </div>
+
+                                <div class="card-sub">
+                                    Jackets, scarves and clothing
+                                </div>
+
+                            </div>
+
+                            <div class="td-actions">
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <div>
+
+                                <div class="card-title">
+                                    🎯 Others
+                                </div>
+
+                                <div class="card-sub">
+                                    Other lost and found items
+                                </div>
+
+                            </div>
+
+                            <div class="td-actions">
+
+                                <button class="btn btn-secondary btn-xs">
+                                    Edit
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

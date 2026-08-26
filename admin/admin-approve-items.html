@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Approve Items - UIU Lost & Found</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-box">L&F</div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-section-label">
+                Main
+            </div>
+
+            <a href="admin-dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+
+            <a href="admin-approve-items.html"
+               class="nav-item active">
+
+                <span class="nav-icon">✅</span>
+                Approve Items
+
+                <span class="nav-badge">
+                    4
+                </span>
+
+            </a>
+
+            <a href="admin-manage-claims.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                Manage Claims
+
+                <span class="nav-badge">
+                    3
+                </span>
+            </a>
+
+            <a href="admin-manage-categories.html" class="nav-item">
+                <span class="nav-icon">🗂️</span>
+                Categories
+            </a>
+
+            <a href="admin-manage-users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+
+            <a href="admin-reports.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-row">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+                    <div class="user-name">
+                        Admin User
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="login.html" class="logout-btn">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-title">
+                    Approve Found Items
+                </span>
+
+                <span class="topbar-sub">
+                    Review student submissions
+                </span>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <span class="badge badge-pending">
+                    4 Pending
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="content">
+
+
+            <!-- SEARCH AND FILTER -->
+            <div class="filter-bar">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search items">
+
+
+                <select class="form-control">
+
+                    <option>All Status</option>
+                    <option>Pending Approval</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+
+                </select>
+
+
+                <select class="form-control">
+
+                    <option>All Categories</option>
+                    <option>Electronics</option>
+                    <option>Documents</option>
+                    <option>Bags</option>
+                    <option>Accessories</option>
+                    <option>Clothing</option>
+                    <option>Others</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="section-row">
+
+                <h3>Pending Approval</h3>
+
+                <button class="btn btn-success btn-sm">
+                    Approve All
+                </button>
+
+            </div>
+
+
+
+            <!-- ITEM CARDS -->
+            <div class="chart-grid-2">
+
+
+                <div class="card">
+
+                    <div class="card-head">
+
+                        <div>
+
+                            <div class="card-title">
+                                Blue Water Bottle
+                            </div>
+
+                            <div class="card-sub">
+                                Others
+                            </div>
+
+                        </div>
+
+                        <span class="badge badge-pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <p>📍 Cafeteria Block B</p>
+
+                    <p>📅 22 Jul 2026</p>
+
+                    <p>👤 Nadia Rahman</p>
+
+                    <br>
+
+                    <p>
+                        Blue water bottle found near
+                        the cafeteria entrance.
+                    </p>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        Approve
+                    </button>
+
+                    <button class="btn btn-danger btn-sm">
+                        Reject
+                    </button>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="card-head">
+
+                        <div>
+
+                            <div class="card-title">
+                                Black Backpack
+                            </div>
+
+                            <div class="card-sub">
+                                Bags
+                            </div>
+
+                        </div>
+
+                        <span class="badge badge-pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <p>📍 Library 3rd Floor</p>
+
+                    <p>📅 21 Jul 2026</p>
+
+                    <p>👤 Tanvir Ahmed</p>
+
+                    <br>
+
+                    <p>
+                        Black backpack found on
+                        a study table.
+                    </p>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        Approve
+                    </button>
+
+                    <button class="btn btn-danger btn-sm">
+                        Reject
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ALL FOUND ITEMS -->
+            <div class="section-row">
+                <h3>All Found Items</h3>
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ITEM</th>
+                            <th>CATEGORY</th>
+                            <th>REPORTER</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Black Leather Wallet
+                            </td>
+
+                            <td>
+                                Accessories
+                            </td>
+
+                            <td>
+                                Nadia Rahman
+                            </td>
+
+                            <td>
+                                <span class="badge badge-approved">
+                                    Approved
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-secondary btn-xs">
+                                    View
+                                </button>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Blue Water Bottle
+                            </td>
+
+                            <td>
+                                Others
+                            </td>
+
+                            <td>
+                                Nadia Rahman
+                            </td>
+
+                            <td>
+                                <span class="badge badge-pending">
+                                    Pending
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <button class="btn btn-success btn-xs">
+                                    Approve
+                                </button>
+
+                                <button class="btn btn-danger btn-xs">
+                                    Reject
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
