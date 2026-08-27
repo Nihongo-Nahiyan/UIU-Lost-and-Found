@@ -1,0 +1,452 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap');
+
+
+/* =========================
+   GENERAL
+   ========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f8f8f6;
+    color: #1a1a1a;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+nav {
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    max-width: 1280px;
+    height: 58px;
+
+    margin: 0 auto;
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+/* LOGO */
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-box {
+    width: 34px;
+    height: 34px;
+
+    background: #f05a1a;
+    color: white;
+
+    border-radius: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.nav-logo .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+}
+
+.nav-logo .brand em {
+    color: #f05a1a;
+    font-style: normal;
+}
+
+
+/* NAVIGATION LINKS */
+
+.nav-links {
+    display: flex;
+    flex: 1;
+    gap: 2px;
+}
+
+.nav-links a {
+    padding: 6px 13px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+.nav-links a:hover {
+    background: #f5f5f5;
+    color: #1a1a1a;
+}
+
+.nav-links a.active {
+    background: #fff4ee;
+    color: #f05a1a;
+
+    font-weight: 600;
+}
+
+
+/* RIGHT SIDE OF NAVBAR */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-user {
+    font-size: 13px;
+    color: #737373;
+}
+
+
+/* =========================
+   PAGE LAYOUT
+   ========================= */
+
+.page-wrap-md {
+    max-width: 860px;
+
+    margin: 0 auto;
+
+    padding: 36px 28px;
+}
+
+
+/* =========================
+   PAGE HEADER
+   ========================= */
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header h2 {
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 26px;
+
+    font-weight: 400;
+
+    color: #1a1a1a;
+}
+
+.page-header p {
+    font-size: 14px;
+
+    color: #737373;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 8px 18px;
+
+    border-radius: 7px;
+
+    border: none;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* ORANGE BUTTON */
+
+.btn-primary {
+    background: #f05a1a;
+
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #d94d12;
+}
+
+
+/* WHITE BUTTON */
+
+.btn-secondary {
+    background: white;
+
+    color: #1a1a1a;
+
+    border: 1px solid #e0e0e0;
+
+    font-weight: 500;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f5;
+}
+
+
+/* SMALL BUTTON */
+
+.btn-sm {
+    padding: 5px 14px;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   REPORT FOUND FORM
+   ========================= */
+
+.form-card {
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+
+    padding: 32px;
+}
+
+
+/* EACH FORM SECTION */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-bottom: 18px;
+}
+
+
+/* LABEL */
+
+.form-group label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #404040;
+}
+
+
+/* INPUT, SELECT AND TEXTAREA */
+
+.form-control {
+    width: 100%;
+
+    padding: 9px 13px;
+
+    border: 1px solid #e0e0e0;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+/* WHEN USER CLICKS INPUT */
+
+.form-control:focus {
+    border-color: #f05a1a;
+
+    box-shadow: 0 0 0 3px rgba(240, 90, 26, 0.08);
+}
+
+
+/* CATEGORY + DATE SIDE BY SIDE */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* SUBMIT + CANCEL BUTTON AREA */
+
+.form-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================
+   MY CLAIMS
+   ========================= */
+
+.report-row {
+    background: white;
+
+    border: 1px solid #e8e8e8;
+
+    border-radius: 8px;
+
+    padding: 14px 18px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* CLAIM ITEM NAME */
+
+.report-row-title {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #1a1a1a;
+}
+
+
+/* LOCATION AND DATE */
+
+.report-row-meta {
+    font-size: 12px;
+
+    color: #888;
+
+    margin-top: 3px;
+}
+
+
+/* ADMIN NOTE */
+
+.admin-note {
+    font-size: 12px;
+
+    color: #888;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   STATUS BADGES
+   ========================= */
+
+.badge {
+    display: inline-block;
+
+    padding: 3px 11px;
+
+    border-radius: 99px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    font-family: 'DM Mono', monospace;
+
+    white-space: nowrap;
+}
+
+
+/* PENDING */
+
+.badge-pending {
+    background: #fef9c3;
+
+    color: #854d0e;
+}
+
+
+/* APPROVED */
+
+.badge-approved {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+/* REJECTED */
+
+.badge-rejected {
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+}
