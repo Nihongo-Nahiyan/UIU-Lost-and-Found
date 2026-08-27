@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Found Item - UIU Lost & Found</title>
+
+   <link rel="stylesheet" href="../css/student.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">L&F</div>
+
+                <div class="brand">
+                    UIU Lost <em>&</em> Found
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="browse.html">Browse</a>
+                <a href="report-lost.html">Report Lost</a>
+                <a href="report-found.html" class="active">Report Found</a>
+                <a href="my-claims.html">My Claims</a>
+                <a href="messages.html">Messages</a>
+            </div>
+
+            <div class="nav-right">
+                <span class="nav-user">👤 Student</span>
+                <a href="login.html" class="btn btn-secondary btn-sm">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <div class="page-wrap-md">
+
+            <!-- PAGE TITLE -->
+            <div class="page-header">
+
+                <h2>Report Found Item</h2>
+
+                <p>
+                    Fill in details about the item you found on campus
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+            <div class="form-card">
+
+                <form>
+
+                    <!-- ITEM TITLE -->
+                    <div class="form-group">
+
+                        <label for="title">
+                            Item Title *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            class="form-control"
+                            placeholder="e.g., Found wallet near library"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY AND DATE -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category *
+                            </label>
+
+                            <select
+                                id="category"
+                                class="form-control"
+                                required
+                            >
+                                <option value="">Select Category</option>
+                                <option>Electronics</option>
+                                <option>Documents</option>
+                                <option>Bags</option>
+                                <option>Accessories</option>
+                                <option>Clothing</option>
+                                <option>Others</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="found-date">
+                                Found Date *
+                            </label>
+
+                            <input
+                                type="date"
+                                id="found-date"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+                    <div class="form-group">
+
+                        <label for="location">
+                            Found Location *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            class="form-control"
+                            placeholder="e.g., Library 2F Reading Room"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description *
+                        </label>
+
+                        <textarea
+                            id="description"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Describe the item in detail..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- IMAGE -->
+                    <div class="form-group">
+
+                        <label for="image">
+                            Upload Image *
+                        </label>
+
+                        <input
+                            type="file"
+                            id="image"
+                            class="form-control"
+                            accept="image/*"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Submit Report
+                        </button>
+
+                        <a
+                            href="dashboard.html"
+                            class="btn btn-secondary"
+                        >
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
