@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+
+<header>
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
+            <span>
+                UIU Lost & Found
+            </span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="dashboard.html"
+               class="active">
+                Dashboard
+            </a>
+
+            <a href="approve-items.html">
+                Approve Items
+            </a>
+
+            <a href="manage-claims.html">
+                Claims
+            </a>
+
+            <a href="manage-categories.html">
+                Categories
+            </a>
+
+            <a href="manage-users.html">
+                Users
+            </a>
+
+        </div>
+
+
+        <div class="admin-side">
+
+            <span>
+                👤 Admin
+            </span>
+
+            <a href="../public/index.html">
+                Logout
+            </a>
+
+        </div>
+
+
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+<div class="container">
+
+
+    <!-- =========================
+         PAGE TITLE
+         ========================= -->
+
+    <div class="page-title">
+
+        <p>
+            Administrator
+        </p>
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+    </div>
+
+
+
+    <!-- =========================
+         STAT CARDS
+         ========================= -->
+
+    <div class="stat-grid">
+
+
+        <div class="stat-card">
+
+            <div>
+
+                <p>
+                    Total Lost Items
+                </p>
+
+                <h2>
+                    108
+                </h2>
+
+                <span>
+                    +12 this week
+                </span>
+
+            </div>
+
+            <div class="stat-icon">
+                🔍
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div>
+
+                <p>
+                    Total Found Items
+                </p>
+
+                <h2>
+                    83
+                </h2>
+
+                <span>
+                    +9 this week
+                </span>
+
+            </div>
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div>
+
+                <p>
+                    Pending Claims
+                </p>
+
+                <h2>
+                    14
+                </h2>
+
+                <span>
+                    Awaiting review
+                </span>
+
+            </div>
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div>
+
+                <p>
+                    Approved Claims
+                </p>
+
+                <h2>
+                    67
+                </h2>
+
+                <span>
+                    This semester
+                </span>
+
+            </div>
+
+            <div class="stat-icon">
+                ✔️
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div>
+
+                <p>
+                    Total Users
+                </p>
+
+                <h2>
+                    520
+                </h2>
+
+                <span>
+                    Registered users
+                </span>
+
+            </div>
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         GRAPH SECTION
+         ========================= -->
+
+    <div class="graph-grid">
+
+
+        <!-- MONTHLY GRAPH -->
+
+        <div class="graph-box large-graph">
+
+            <div class="graph-heading">
+
+                <h3>
+                    Monthly Lost vs Found Trend
+                </h3>
+
+                <p>
+                    March - August 2026
+                </p>
+
+            </div>
+
+
+            <div class="chart-area">
+
+                <canvas id="monthlyChart">
+                </canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATUS GRAPH -->
+
+        <div class="graph-box">
+
+            <div class="graph-heading">
+
+                <h3>
+                    Status Distribution
+                </h3>
+
+                <p>
+                    All-time totals
+                </p>
+
+            </div>
+
+
+            <div class="chart-area pie-chart">
+
+                <canvas id="statusChart">
+                </canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CATEGORY GRAPH -->
+
+        <div class="graph-box">
+
+            <div class="graph-heading">
+
+                <h3>
+                    By Category
+                </h3>
+
+                <p>
+                    Lost vs Found per category
+                </p>
+
+            </div>
+
+
+            <div class="chart-area">
+
+                <canvas id="categoryChart">
+                </canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- USER ACTIVITY -->
+
+        <div class="graph-box">
+
+            <div class="graph-heading">
+
+                <h3>
+                    User Activity
+                </h3>
+
+                <p>
+                    Reports vs Claims per week
+                </p>
+
+            </div>
+
+
+            <div class="chart-area">
+
+                <canvas id="activityChart">
+                </canvas>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         BOTTOM DASHBOARD
+         ========================= -->
+
+    <div class="dashboard-bottom">
+
+
+        <!-- PENDING APPROVAL -->
+
+        <div class="dashboard-section">
+
+            <h2>
+                Pending Found Item Approvals
+            </h2>
+
+
+            <div class="table-box">
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ITEM
+                            </th>
+
+                            <th>
+                                REPORTER
+                            </th>
+
+                            <th>
+                                DATE
+                            </th>
+
+                            <th>
+                                ACTION
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+                                Black Leather Wallet
+                            </td>
+
+                            <td>
+                                Nadia Rahman
+                            </td>
+
+                            <td>
+                                2026-07-28
+                            </td>
+
+                            <td>
+
+                                <button class="approve-btn">
+                                    Approve
+                                </button>
+
+                                <button class="reject-btn">
+                                    Reject
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+                                UIU Student ID Card
+                            </td>
+
+                            <td>
+                                Fahim Hossain
+                            </td>
+
+                            <td>
+                                2026-07-27
+                            </td>
+
+                            <td>
+
+                                <button class="approve-btn">
+                                    Approve
+                                </button>
+
+                                <button class="reject-btn">
+                                    Reject
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="dashboard-section">
+
+            <h2>
+                Quick Links
+            </h2>
+
+
+            <div class="quick-links">
+
+                <a href="manage-claims.html">
+                    Manage Claims →
+                </a>
+
+                <a href="manage-categories.html">
+                    Manage Categories →
+                </a>
+
+                <a href="manage-users.html">
+                    Manage Users →
+                </a>
+
+            </div>
+
+
+            <h2 class="recent-heading">
+                Recent Claims
+            </h2>
+
+
+            <div class="recent-claim">
+
+                <h3>
+                    Black Leather Wallet
+                </h3>
+
+                <p>
+                    Fahim Hossain
+                </p>
+
+                <span class="pending">
+                    Pending
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</main>
+
+
+
+<footer>
+
+    © 2026 UIU Lost & Found Portal ·
+    United International University
+
+</footer>
+
+
+
+<!-- =========================
+     CHART.JS
+     ========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+
+<script>
+
+
+/* MONTHLY GRAPH */
+
+new Chart(
+
+    document.getElementById(
+        "monthlyChart"
+    ),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels: [
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug"
+            ],
+
+            datasets: [
+
+                {
+
+                    label: "Lost",
+
+                    data: [
+                        18,
+                        24,
+                        31,
+                        27,
+                        35,
+                        19
+                    ],
+
+                    borderColor:
+                        "#ff6500",
+
+                    tension: 0.4
+
+                },
+
+
+                {
+
+                    label: "Found",
+
+                    data: [
+                        12,
+                        19,
+                        22,
+                        25,
+                        28,
+                        16
+                    ],
+
+                    borderColor:
+                        "#10b981",
+
+                    tension: 0.4
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    }
+
+);
+
+
+
+/* STATUS GRAPH */
+
+new Chart(
+
+    document.getElementById(
+        "statusChart"
+    ),
+
+    {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+
+                "Lost",
+
+                "Found",
+
+                "Claimed",
+
+                "Resolved"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    data: [
+                        108,
+                        83,
+                        41,
+                        67
+                    ],
+
+                    backgroundColor: [
+
+                        "#ff6500",
+
+                        "#10b981",
+
+                        "#3b82f6",
+
+                        "#8b5cf6"
+
+                    ]
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    }
+
+);
+
+
+
+/* CATEGORY GRAPH */
+
+new Chart(
+
+    document.getElementById(
+        "categoryChart"
+    ),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+
+                "Electronics",
+
+                "Documents",
+
+                "Accessories",
+
+                "Bags",
+
+                "Keys",
+
+                "Books"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    label: "Lost",
+
+                    data: [
+                        28,
+                        19,
+                        16,
+                        12,
+                        10,
+                        14
+                    ],
+
+                    backgroundColor:
+                        "#ff6500"
+
+                },
+
+
+                {
+
+                    label: "Found",
+
+                    data: [
+                        21,
+                        14,
+                        11,
+                        9,
+                        13,
+                        8
+                    ],
+
+                    backgroundColor:
+                        "#10b981"
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            indexAxis: "y",
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    }
+
+);
+
+
+
+/* USER ACTIVITY GRAPH */
+
+new Chart(
+
+    document.getElementById(
+        "activityChart"
+    ),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels: [
+
+                "W1 Jul",
+
+                "W2 Jul",
+
+                "W3 Jul",
+
+                "W4 Jul",
+
+                "W1 Aug",
+
+                "W2 Aug"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    label: "Reports",
+
+                    data: [
+                        14,
+                        18,
+                        22,
+                        19,
+                        25,
+                        21
+                    ],
+
+                    borderColor:
+                        "#ff6500"
+
+                },
+
+
+                {
+
+                    label: "Claims",
+
+                    data: [
+                        7,
+                        11,
+                        15,
+                        13,
+                        17,
+                        14
+                    ],
+
+                    borderColor:
+                        "#3b82f6"
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>
