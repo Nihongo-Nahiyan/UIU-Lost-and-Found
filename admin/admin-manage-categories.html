@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Categories - UIU Lost & Found</title>
+    <title>Manage Categories</title>
 
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -13,10 +13,9 @@
 <body>
 
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <header class="header">
 
-        <div class="sidebar-logo">
+        <div class="header-logo">
 
             <div class="logo-box">
                 L&F
@@ -29,11 +28,7 @@
         </div>
 
 
-        <div class="sidebar-section">
-
-            <div class="sidebar-section-label">
-                Main
-            </div>
+        <div class="header-section">
 
             <a href="admin-dashboard.html" class="nav-item">
                 <span class="nav-icon">📊</span>
@@ -48,13 +43,11 @@
 
             <a href="admin-manage-claims.html" class="nav-item">
                 <span class="nav-icon">📋</span>
-                Manage Claims
+                Claims
                 <span class="nav-badge">3</span>
             </a>
 
-            <a href="admin-manage-categories.html"
-               class="nav-item active">
-
+            <a href="admin-manage-categories.html" class="nav-item active">
                 <span class="nav-icon">🗂️</span>
                 Categories
             </a>
@@ -72,7 +65,7 @@
         </div>
 
 
-        <div class="sidebar-footer">
+        <div class="header-rightside">
 
             <div class="user-row">
 
@@ -81,34 +74,26 @@
                 </div>
 
                 <div>
-
-                    <div class="user-name">
-                        Admin User
-                    </div>
-
-                    <div class="user-role">
-                        Administrator
-                    </div>
-
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Administrator</div>
                 </div>
 
             </div>
 
-            <a href="login.html" class="logout-btn">
-                🚪 Logout
+            <a href="../public/login.html" class="logout-btn">
+                Logout
             </a>
 
         </div>
 
-    </aside>
+    </header>
 
 
 
-    <!-- MAIN -->
-    <div class="main">
+    <main class="main">
 
 
-        <header class="topbar">
+        <div class="topbar">
 
             <div class="topbar-left">
 
@@ -117,26 +102,27 @@
                 </span>
 
                 <span class="topbar-sub">
-                    Add or remove item categories
+                    Add and manage item categories
                 </span>
 
             </div>
 
-        </header>
+        </div>
 
 
 
-        <main class="content">
+        <div class="content">
 
 
             <div class="chart-grid-2">
 
 
                 <!-- ADD CATEGORY -->
+
                 <div>
 
                     <div class="section-row">
-                        <h3>Add New Category</h3>
+                        <h3>Add Category</h3>
                     </div>
 
 
@@ -151,7 +137,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Example: Jewellery">
+                                placeholder="Enter category">
 
                         </div>
 
@@ -165,7 +151,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Example: 💍">
+                                placeholder="Enter icon">
 
                         </div>
 
@@ -178,7 +164,7 @@
 
                             <textarea
                                 class="form-control"
-                                placeholder="Enter category description">
+                                placeholder="Enter description">
                             </textarea>
 
                         </div>
@@ -194,11 +180,12 @@
 
 
 
-                <!-- EXISTING CATEGORIES -->
+                <!-- CATEGORIES -->
+
                 <div>
 
                     <div class="section-row">
-                        <h3>Existing Categories</h3>
+                        <h3>Categories</h3>
                     </div>
 
 
@@ -217,6 +204,7 @@
                                 </div>
 
                             </div>
+
 
                             <div class="td-actions">
 
@@ -254,6 +242,7 @@
 
                             </div>
 
+
                             <div class="td-actions">
 
                                 <button class="btn btn-secondary btn-xs">
@@ -290,6 +279,7 @@
 
                             </div>
 
+
                             <div class="td-actions">
 
                                 <button class="btn btn-secondary btn-xs">
@@ -321,46 +311,11 @@
                                 </div>
 
                                 <div class="card-sub">
-                                    Jackets, scarves and clothing
+                                    Jackets and clothing
                                 </div>
 
                             </div>
 
-                            <div class="td-actions">
-
-                                <button class="btn btn-secondary btn-xs">
-                                    Edit
-                                </button>
-
-                                <button class="btn btn-danger btn-xs">
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="card">
-
-                        <div class="card-head">
-
-                            <div>
-
-                                <div class="card-title">
-                                    🎯 Others
-                                </div>
-
-                                <div class="card-sub">
-                                    Other lost and found items
-                                </div>
-
-                            </div>
 
                             <div class="td-actions">
 
@@ -381,11 +336,12 @@
 
                 </div>
 
+
             </div>
 
-        </main>
+        </div>
 
-    </div>
+    </main>
 
 </body>
 

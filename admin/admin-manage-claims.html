@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Claims - UIU Lost & Found</title>
+    <title>Manage Claims</title>
 
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -13,23 +13,22 @@
 <body>
 
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <header class="header">
 
-        <div class="sidebar-logo">
-            <div class="logo-box">L&F</div>
+        <div class="header-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
 
             <div class="brand">
                 UIU Lost <em>&</em> Found
             </div>
+
         </div>
 
 
-        <div class="sidebar-section">
-
-            <div class="sidebar-section-label">
-                Main
-            </div>
+        <div class="header-section">
 
             <a href="admin-dashboard.html" class="nav-item">
                 <span class="nav-icon">📊</span>
@@ -42,12 +41,9 @@
                 <span class="nav-badge">4</span>
             </a>
 
-            <a href="admin-manage-claims.html"
-               class="nav-item active">
-
+            <a href="admin-manage-claims.html" class="nav-item active">
                 <span class="nav-icon">📋</span>
-                Manage Claims
-
+                Claims
                 <span class="nav-badge">3</span>
             </a>
 
@@ -69,7 +65,7 @@
         </div>
 
 
-        <div class="sidebar-footer">
+        <div class="header-rightside">
 
             <div class="user-row">
 
@@ -78,32 +74,26 @@
                 </div>
 
                 <div>
-                    <div class="user-name">
-                        Admin User
-                    </div>
-
-                    <div class="user-role">
-                        Administrator
-                    </div>
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Administrator</div>
                 </div>
 
             </div>
 
-            <a href="login.html" class="logout-btn">
-                🚪 Logout
+            <a href="../public/login.html" class="logout-btn">
+                Logout
             </a>
 
         </div>
 
-    </aside>
+    </header>
 
 
 
-    <!-- MAIN -->
-    <div class="main">
+    <main class="main">
 
 
-        <header class="topbar">
+        <div class="topbar">
 
             <div class="topbar-left">
 
@@ -112,34 +102,25 @@
                 </span>
 
                 <span class="topbar-sub">
-                    Review and process ownership claims
+                    Review ownership claims
                 </span>
 
             </div>
 
-
-            <div class="topbar-right">
-
-                <span class="badge badge-pending">
-                    12 Pending
-                </span>
-
-            </div>
-
-        </header>
+        </div>
 
 
 
-        <main class="content">
+        <div class="content">
 
 
-            <!-- CLAIM INFORMATION CARDS -->
             <div class="kpi-grid">
 
 
                 <div class="kpi-card accent-yellow">
 
                     <div>
+
                         <div class="kpi-label">
                             Pending
                         </div>
@@ -147,6 +128,7 @@
                         <div class="kpi-value">
                             12
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -159,6 +141,7 @@
                 <div class="kpi-card accent-green">
 
                     <div>
+
                         <div class="kpi-label">
                             Approved
                         </div>
@@ -166,6 +149,7 @@
                         <div class="kpi-value">
                             34
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -178,6 +162,7 @@
                 <div class="kpi-card accent-orange">
 
                     <div>
+
                         <div class="kpi-label">
                             Rejected
                         </div>
@@ -185,6 +170,7 @@
                         <div class="kpi-value">
                             8
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -198,7 +184,6 @@
 
 
 
-            <!-- FILTER -->
             <div class="filter-bar">
 
                 <input
@@ -221,12 +206,13 @@
 
 
             <div class="section-row">
+
                 <h3>All Claims</h3>
+
             </div>
 
 
 
-            <!-- CLAIM TABLE -->
             <div class="table-wrap">
 
                 <table>
@@ -259,11 +245,11 @@
                             </td>
 
                             <td>
-                                Mizanur Rahman
+                                Nihongo Nahiyan Sarkar
                             </td>
 
                             <td class="td-mono">
-                                011221456
+                                0112420250
                             </td>
 
                             <td>
@@ -303,11 +289,11 @@
                             </td>
 
                             <td>
-                                Nadia Rahman
+                                Shaera Kabir Ahona
                             </td>
 
                             <td class="td-mono">
-                                011183920
+                                0112420244
                             </td>
 
                             <td>
@@ -335,7 +321,6 @@
                         </tr>
 
 
-
                         <tr>
 
                             <td class="td-mono">
@@ -347,17 +332,19 @@
                             </td>
 
                             <td>
-                                Fahim Hossain
+                                Nasiba Raida
                             </td>
 
                             <td class="td-mono">
-                                011145670
+                                0112420495
                             </td>
 
                             <td>
+
                                 <span class="badge badge-approved">
                                     Approved
                                 </span>
+
                             </td>
 
                             <td>
@@ -377,9 +364,10 @@
 
             </div>
 
-        </main>
 
-    </div>
+        </div>
+
+    </main>
 
 </body>
 

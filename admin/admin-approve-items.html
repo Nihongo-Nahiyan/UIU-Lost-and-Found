@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Approve Items - UIU Lost & Found</title>
+    <title>Approve Items</title>
 
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -13,48 +13,38 @@
 <body>
 
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <header class="header">
 
-        <div class="sidebar-logo">
-            <div class="logo-box">L&F</div>
+        <div class="header-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
 
             <div class="brand">
                 UIU Lost <em>&</em> Found
             </div>
+
         </div>
 
 
-        <div class="sidebar-section">
-
-            <div class="sidebar-section-label">
-                Main
-            </div>
+        <div class="header-section">
 
             <a href="admin-dashboard.html" class="nav-item">
                 <span class="nav-icon">📊</span>
                 Dashboard
             </a>
 
-            <a href="admin-approve-items.html"
-               class="nav-item active">
-
+            <a href="admin-approve-items.html" class="nav-item active">
                 <span class="nav-icon">✅</span>
                 Approve Items
-
-                <span class="nav-badge">
-                    4
-                </span>
-
+                <span class="nav-badge">4</span>
             </a>
 
             <a href="admin-manage-claims.html" class="nav-item">
                 <span class="nav-icon">📋</span>
-                Manage Claims
-
-                <span class="nav-badge">
-                    3
-                </span>
+                Claims
+                <span class="nav-badge">3</span>
             </a>
 
             <a href="admin-manage-categories.html" class="nav-item">
@@ -75,7 +65,7 @@
         </div>
 
 
-        <div class="sidebar-footer">
+        <div class="header-rightside">
 
             <div class="user-row">
 
@@ -84,32 +74,26 @@
                 </div>
 
                 <div>
-                    <div class="user-name">
-                        Admin User
-                    </div>
-
-                    <div class="user-role">
-                        Administrator
-                    </div>
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Administrator</div>
                 </div>
 
             </div>
 
-            <a href="login.html" class="logout-btn">
-                🚪 Logout
+            <a href="../public/login.html" class="logout-btn">
+                Logout
             </a>
 
         </div>
 
-    </aside>
+    </header>
 
 
 
-    <!-- MAIN -->
-    <div class="main">
+    <main class="main">
 
 
-        <header class="topbar">
+        <div class="topbar">
 
             <div class="topbar-left">
 
@@ -118,10 +102,11 @@
                 </span>
 
                 <span class="topbar-sub">
-                    Review student submissions
+                    Review student found item reports
                 </span>
 
             </div>
+
 
             <div class="topbar-right">
 
@@ -131,14 +116,15 @@
 
             </div>
 
-        </header>
+        </div>
 
 
 
-        <main class="content">
+        <div class="content">
 
 
-            <!-- SEARCH AND FILTER -->
+            <!-- FILTER -->
+
             <div class="filter-bar">
 
                 <input
@@ -150,7 +136,7 @@
                 <select class="form-control">
 
                     <option>All Status</option>
-                    <option>Pending Approval</option>
+                    <option>Pending</option>
                     <option>Approved</option>
                     <option>Rejected</option>
 
@@ -185,7 +171,6 @@
 
 
 
-            <!-- ITEM CARDS -->
             <div class="chart-grid-2">
 
 
@@ -212,11 +197,11 @@
                     </div>
 
 
-                    <p>📍 Cafeteria Block B</p>
+                    <p>Location: Cafeteria Block B</p>
 
-                    <p>📅 22 Jul 2026</p>
+                    <p>Date: 22 Jul 2026</p>
 
-                    <p>👤 Nadia Rahman</p>
+                    <p>Reporter: Shaera Kabir Ahona</p>
 
                     <br>
 
@@ -262,17 +247,16 @@
                     </div>
 
 
-                    <p>📍 Library 3rd Floor</p>
+                    <p>Location: Library 3rd Floor</p>
 
-                    <p>📅 21 Jul 2026</p>
+                    <p>Date: 21 Jul 2026</p>
 
-                    <p>👤 Tanvir Ahmed</p>
+                    <p>Reporter: Nasiba Raida</p>
 
                     <br>
 
                     <p>
-                        Black backpack found on
-                        a study table.
+                        Black backpack found on a study table.
                     </p>
 
                     <br>
@@ -292,9 +276,10 @@
 
 
 
-            <!-- ALL FOUND ITEMS -->
             <div class="section-row">
+
                 <h3>All Found Items</h3>
+
             </div>
 
 
@@ -328,7 +313,7 @@
                             </td>
 
                             <td>
-                                Nadia Rahman
+                                Nihongo Nahiyan Sarkar
                             </td>
 
                             <td>
@@ -338,9 +323,11 @@
                             </td>
 
                             <td>
+
                                 <button class="btn btn-secondary btn-xs">
                                     View
                                 </button>
+
                             </td>
 
                         </tr>
@@ -357,7 +344,7 @@
                             </td>
 
                             <td>
-                                Nadia Rahman
+                                Shaera Kabir Ahona
                             </td>
 
                             <td>
@@ -386,9 +373,10 @@
 
             </div>
 
-        </main>
 
-    </div>
+        </div>
+
+    </main>
 
 </body>
 

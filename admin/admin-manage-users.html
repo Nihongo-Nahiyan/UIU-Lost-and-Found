@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Users - UIU Lost & Found</title>
+    <title>Manage Users</title>
 
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -13,10 +13,9 @@
 <body>
 
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <header class="header">
 
-        <div class="sidebar-logo">
+        <div class="header-logo">
 
             <div class="logo-box">
                 L&F
@@ -29,11 +28,7 @@
         </div>
 
 
-        <div class="sidebar-section">
-
-            <div class="sidebar-section-label">
-                Main
-            </div>
+        <div class="header-section">
 
             <a href="admin-dashboard.html" class="nav-item">
                 <span class="nav-icon">📊</span>
@@ -48,7 +43,7 @@
 
             <a href="admin-manage-claims.html" class="nav-item">
                 <span class="nav-icon">📋</span>
-                Manage Claims
+                Claims
                 <span class="nav-badge">3</span>
             </a>
 
@@ -57,9 +52,7 @@
                 Categories
             </a>
 
-            <a href="admin-manage-users.html"
-               class="nav-item active">
-
+            <a href="admin-manage-users.html" class="nav-item active">
                 <span class="nav-icon">👥</span>
                 Users
             </a>
@@ -72,7 +65,7 @@
         </div>
 
 
-        <div class="sidebar-footer">
+        <div class="header-rightside">
 
             <div class="user-row">
 
@@ -81,34 +74,26 @@
                 </div>
 
                 <div>
-
-                    <div class="user-name">
-                        Admin User
-                    </div>
-
-                    <div class="user-role">
-                        Administrator
-                    </div>
-
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Administrator</div>
                 </div>
 
             </div>
 
-            <a href="login.html" class="logout-btn">
-                🚪 Logout
+            <a href="../public/login.html" class="logout-btn">
+                Logout
             </a>
 
         </div>
 
-    </aside>
+    </header>
 
 
 
-    <!-- MAIN -->
-    <div class="main">
+    <main class="main">
 
 
-        <header class="topbar">
+        <div class="topbar">
 
             <div class="topbar-left">
 
@@ -117,25 +102,25 @@
                 </span>
 
                 <span class="topbar-sub">
-                    View registered accounts
+                    View registered users
                 </span>
 
             </div>
 
-        </header>
+        </div>
 
 
 
-        <main class="content">
+        <div class="content">
 
 
-            <!-- USER INFORMATION -->
             <div class="kpi-grid">
 
 
                 <div class="kpi-card accent-teal">
 
                     <div>
+
                         <div class="kpi-label">
                             Total Students
                         </div>
@@ -143,6 +128,7 @@
                         <div class="kpi-value">
                             520
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -155,6 +141,7 @@
                 <div class="kpi-card accent-orange">
 
                     <div>
+
                         <div class="kpi-label">
                             Admins
                         </div>
@@ -162,6 +149,7 @@
                         <div class="kpi-value">
                             1
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -174,6 +162,7 @@
                 <div class="kpi-card accent-green">
 
                     <div>
+
                         <div class="kpi-label">
                             New This Month
                         </div>
@@ -181,6 +170,7 @@
                         <div class="kpi-value">
                             18
                         </div>
+
                     </div>
 
                     <div class="kpi-icon">
@@ -194,7 +184,6 @@
 
 
 
-            <!-- SEARCH -->
             <div class="filter-bar">
 
                 <input
@@ -216,12 +205,13 @@
 
 
             <div class="section-row">
+
                 <h3>Registered Users</h3>
+
             </div>
 
 
 
-            <!-- USER TABLE -->
             <div class="table-wrap">
 
                 <table>
@@ -246,15 +236,15 @@
                         <tr>
 
                             <td class="td-bold">
-                                Fahim Hossain
+                                Nihongo Nahiyan Sarkar
                             </td>
 
                             <td class="td-mono">
-                                011183920
+                                0112420250
                             </td>
 
                             <td class="td-muted">
-                                fahim@uiu.ac.bd
+                                nihongo@uiu.ac.bd
                             </td>
 
                             <td>
@@ -285,20 +275,18 @@
 
                         </tr>
 
-
-
                         <tr>
 
                             <td class="td-bold">
-                                Nadia Rahman
+                                Shaera Kabir Ahona
                             </td>
 
                             <td class="td-mono">
-                                011221456
+                                0112420244
                             </td>
 
                             <td class="td-muted">
-                                nadia@uiu.ac.bd
+                                ahona@uiu.ac.bd
                             </td>
 
                             <td>
@@ -308,7 +296,49 @@
                             </td>
 
                             <td>
-                                5
+                                3
+                            </td>
+
+                            <td>
+
+                                <div class="td-actions">
+
+                                    <button class="btn btn-secondary btn-xs">
+                                        View
+                                    </button>
+
+                                    <button class="btn btn-danger btn-xs">
+                                        Remove
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td class="td-bold">
+                                Monem Shahriar Khan Akib
+                            </td>
+
+                            <td class="td-mono">
+                                0112420259
+                            </td>
+
+                            <td class="td-muted">
+                                akib@uiu.ac.bd
+                            </td>
+
+                            <td>
+                                <span class="badge badge-student">
+                                    Student
+                                </span>
+                            </td>
+
+                            <td>
+                                1
                             </td>
 
                             <td>
@@ -334,15 +364,15 @@
                         <tr>
 
                             <td class="td-bold">
-                                Tanvir Ahmed
+                                Nasiba Raida
                             </td>
 
                             <td class="td-mono">
-                                011094830
+                                0112420495
                             </td>
 
                             <td class="td-muted">
-                                tanvir@uiu.ac.bd
+                                raida@uiu.ac.bd
                             </td>
 
                             <td>
@@ -352,7 +382,7 @@
                             </td>
 
                             <td>
-                                2
+                                5
                             </td>
 
                             <td>
@@ -416,9 +446,10 @@
 
             </div>
 
-        </main>
 
-    </div>
+        </div>
+
+    </main>
 
 </body>
 

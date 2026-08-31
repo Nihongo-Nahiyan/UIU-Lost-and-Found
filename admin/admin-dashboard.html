@@ -5,29 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Dashboard - UIU Lost & Found</title>
+    <title>Admin Dashboard</title>
 
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
 
-        <div class="sidebar-logo">
-            <div class="logo-box">L&F</div>
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="header-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
             <div class="brand">
                 UIU Lost <em>&</em> Found
             </div>
+
         </div>
 
 
-        <div class="sidebar-section">
-
-            <div class="sidebar-section-label">
-                Main
-            </div>
+        <div class="header-section">
 
             <a href="admin-dashboard.html" class="nav-item active">
                 <span class="nav-icon">📊</span>
@@ -42,7 +45,7 @@
 
             <a href="admin-manage-claims.html" class="nav-item">
                 <span class="nav-icon">📋</span>
-                Manage Claims
+                Claims
                 <span class="nav-badge">3</span>
             </a>
 
@@ -64,7 +67,7 @@
         </div>
 
 
-        <div class="sidebar-footer">
+        <div class="header-rightside">
 
             <div class="user-row">
 
@@ -73,30 +76,36 @@
                 </div>
 
                 <div>
-                    <div class="user-name">Admin User</div>
-                    <div class="user-role">Administrator</div>
+                    <div class="user-name">
+                        Admin
+                    </div>
+
+                    <div class="user-role">
+                        Administrator
+                    </div>
                 </div>
 
             </div>
 
-            <a href="login.html" class="logout-btn">
-                🚪 Logout
+            <a href="../public/login.html" class="logout-btn">
+                Logout
             </a>
 
         </div>
 
-    </aside>
+    </header>
 
 
 
-    <!-- MAIN CONTENT -->
-    <div class="main">
+    <!-- MAIN -->
+
+    <main class="main">
 
 
-        <!-- TOP BAR -->
-        <header class="topbar">
+        <div class="topbar">
 
             <div class="topbar-left">
+
                 <span class="topbar-title">
                     Dashboard
                 </span>
@@ -104,25 +113,20 @@
                 <span class="topbar-sub">
                     UIU Lost & Found Admin Panel
                 </span>
+
             </div>
 
-            <div class="topbar-right">
-                <a href="admin-approve-items.html"
-                   class="btn btn-primary btn-sm">
-                    Approve Items
-                </a>
-            </div>
-
-        </header>
+        </div>
 
 
 
-        <!-- PAGE CONTENT -->
-        <main class="content">
+        <div class="content">
 
 
-            <!-- DASHBOARD CARDS -->
+            <!-- KPI CARDS -->
+
             <div class="kpi-grid">
+
 
                 <div class="kpi-card accent-orange">
 
@@ -220,13 +224,16 @@
 
 
             <!-- PENDING ITEMS -->
+
             <div class="section-row">
-                <h3>Pending Found Item Approvals</h3>
+
+                <h3>Pending Found Items</h3>
 
                 <a href="admin-approve-items.html"
                    class="btn btn-primary btn-sm">
                     View All
                 </a>
+
             </div>
 
 
@@ -235,6 +242,7 @@
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>ITEM</th>
                             <th>CATEGORY</th>
@@ -242,12 +250,15 @@
                             <th>DATE</th>
                             <th>ACTION</th>
                         </tr>
+
                     </thead>
 
 
                     <tbody>
 
+
                         <tr>
+
                             <td class="td-bold">
                                 Blue Water Bottle
                             </td>
@@ -257,7 +268,7 @@
                             </td>
 
                             <td>
-                                Nadia Rahman
+                                Nasiba Raida
                             </td>
 
                             <td class="td-mono">
@@ -265,6 +276,7 @@
                             </td>
 
                             <td>
+
                                 <div class="td-actions">
 
                                     <button class="btn btn-success btn-xs">
@@ -276,11 +288,14 @@
                                     </button>
 
                                 </div>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
+
                             <td class="td-bold">
                                 Black Backpack
                             </td>
@@ -290,7 +305,7 @@
                             </td>
 
                             <td>
-                                Tanvir Ahmed
+                                Shaera Kabir Ahona
                             </td>
 
                             <td class="td-mono">
@@ -298,6 +313,7 @@
                             </td>
 
                             <td>
+
                                 <div class="td-actions">
 
                                     <button class="btn btn-success btn-xs">
@@ -309,41 +325,11 @@
                                     </button>
 
                                 </div>
+
                             </td>
+
                         </tr>
 
-
-                        <tr>
-                            <td class="td-bold">
-                                Samsung Earbuds
-                            </td>
-
-                            <td>
-                                Electronics
-                            </td>
-
-                            <td>
-                                Rifat Karim
-                            </td>
-
-                            <td class="td-mono">
-                                20 Jul 2026
-                            </td>
-
-                            <td>
-                                <div class="td-actions">
-
-                                    <button class="btn btn-success btn-xs">
-                                        Approve
-                                    </button>
-
-                                    <button class="btn btn-danger btn-xs">
-                                        Reject
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
 
                     </tbody>
 
@@ -352,83 +338,9 @@
             </div>
 
 
-            <br>
+        </div>
 
-
-            <!-- RECENT CLAIMS -->
-            <div class="section-row">
-                <h3>Recent Claims</h3>
-
-                <a href="admin-manage-claims.html"
-                   class="btn btn-secondary btn-sm">
-                    View Claims
-                </a>
-            </div>
-
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>ITEM</th>
-                            <th>CLAIMANT</th>
-                            <th>STATUS</th>
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-                        <tr>
-
-                            <td class="td-bold">
-                                Black Leather Wallet
-                            </td>
-
-                            <td>
-                                Mizanur Rahman
-                            </td>
-
-                            <td>
-                                <span class="badge badge-pending">
-                                    Pending
-                                </span>
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="td-bold">
-                                Sony Headphones
-                            </td>
-
-                            <td>
-                                Fahim Hossain
-                            </td>
-
-                            <td>
-                                <span class="badge badge-approved">
-                                    Approved
-                                </span>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </main>
-
-    </div>
+    </main>
 
 </body>
 
