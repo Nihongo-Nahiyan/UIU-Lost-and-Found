@@ -93,6 +93,7 @@
 
 
         <div class="form-box register-form">
+            <form action="../php/register.php" method="POST">
 
 
             <div class="two-inputs">
@@ -104,7 +105,9 @@
                     </label>
 
                     <input type="text"
-                           placeholder="Nadia Rahman">
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
 
                 </div>
 
@@ -116,7 +119,9 @@
                     </label>
 
                     <input type="text"
-                           placeholder="011221456">
+                        name="student_id"
+                        placeholder="Enter student_id"
+                        required>
 
                 </div>
 
@@ -128,15 +133,18 @@
             </label>
 
             <input type="email"
-                   placeholder="name@uiu.ac.bd">
-
+                name="email"
+                placeholder="Enter Email"
+                required>
 
             <label>
                 Phone
             </label>
 
             <input type="text"
-                   placeholder="+880 1XXXXXXXXX">
+                name="phone"
+                placeholder="Enter phone number"
+                required>
 
 
             <label>
@@ -144,7 +152,9 @@
             </label>
 
             <input type="password"
-                   placeholder="Min. 8 characters">
+                name="password"
+                placeholder="enter password"
+                required>
 
 
             <label>
@@ -152,10 +162,11 @@
             </label>
 
             <input type="password"
-                   placeholder="Repeat password">
+                name="confirm_password"
+                placeholder="Repeat password"
+                required>
 
-
-            <button class="form-button">
+            <button type="submit" class="form-button">
                 Create Account
             </button>
 
@@ -169,6 +180,7 @@
                 </a>
 
             </p>
+            </form>
 
         </div>
 

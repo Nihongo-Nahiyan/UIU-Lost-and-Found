@@ -53,17 +53,21 @@
 
 
         <div class="form-box">
-
+            <form action="../php/login.php" method="POST">
             <label>UIU Email</label>
 
             <input type="email"
-                   placeholder="name@uiu.ac.bd">
+                name="email"
+                placeholder="Enter Email"
+                required>
 
 
             <label>Password</label>
 
             <input type="password"
-                   placeholder="Enter password">
+                name="password"
+                placeholder="Enter password"
+                required>
 
 
             <a href="#" class="forgot">
@@ -71,9 +75,10 @@
             </a>
 
 
-            <button class="form-button">
+            <button type="submit" class="form-button">
                 Sign In
             </button>
+            </form>
 
 
             <p class="form-bottom">
