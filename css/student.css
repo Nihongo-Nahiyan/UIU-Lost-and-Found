@@ -4,10 +4,9 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     color: #111111;
 }
 
@@ -29,49 +28,30 @@ nav {
 
 
 .nav-inner {
-    max-width: 1110px;
-    height: 56px;
-
-    margin: 0 auto;
-
+    width: 100%;
+    padding: 14px 30px;
     display: flex;
     align-items: center;
-
-    gap: 26px;
+    justify-content: space-between;
 }
-
 
 .nav-logo {
     display: flex;
     align-items: center;
-
     gap: 10px;
 }
 
 
 .logo-box {
-    width: 32px;
-    height: 32px;
-
-    background-color: #ff6500;
+    background-color: #f05a1a;
     color: white;
-
-    border-radius: 5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 11px;
+    padding: 12px 8px;
+    border-radius: 6px;
     font-weight: bold;
 }
 
-
 .brand {
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 16px;
-
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -84,24 +64,15 @@ nav {
 
 
 .nav-links {
-    flex: 1;
-
     display: flex;
-
-    gap: 8px;
+    gap: 25px;
 }
 
 
 .nav-links a {
-    padding: 9px 10px;
-
-    font-size: 14px;
-
-    color: #243047;
-
-    border-radius: 5px;
+    text-decoration: none;
+    color: #444444;
 }
-
 
 .nav-links a:hover {
     background-color: #f5f5f5;
@@ -109,27 +80,22 @@ nav {
 
 
 .nav-links a.active {
-    background-color: #fff4eb;
-
-    color: #ff6500;
+    color: #f05a1a;
+    font-weight: bold;
 }
 
 
 .nav-right {
     display: flex;
-
+    gap: 20px;
     align-items: center;
-
-    gap: 10px;
 }
 
 
 .nav-user {
-    font-size: 12px;
-
+    font-size: 16px;
     color: #8b8ba3;
 }
-
 
 /* =========================
    BUTTONS
