@@ -165,6 +165,8 @@ $claims =
 <body>
 
 
+    <!-- HEADER -->
+
     <header class="header">
 
         <div class="header-logo">
@@ -255,6 +257,7 @@ $claims =
                 </div>
 
                 <div>
+
                     <div class="user-name">
                         Admin
                     </div>
@@ -262,6 +265,7 @@ $claims =
                     <div class="user-role">
                         Administrator
                     </div>
+
                 </div>
 
             </div>
@@ -279,6 +283,8 @@ $claims =
     </header>
 
 
+
+    <!-- MAIN -->
 
     <main class="main">
 
@@ -303,6 +309,8 @@ $claims =
 
         <div class="content">
 
+
+            <!-- CLAIM STATUS CARDS -->
 
             <div class="kpi-grid">
 
@@ -376,9 +384,12 @@ $claims =
 
 
 
+            <!-- SEARCH AND FILTER -->
+
             <form
                 method="get"
                 class="filter-bar">
+
 
                 <input
                     type="text"
@@ -393,45 +404,65 @@ $claims =
                     class="form-control"
                     onchange="this.form.submit()">
 
+
                     <option value="">
                         All Status
                     </option>
 
+
                     <option
                         value="Pending"
                         <?php
+
                         if ($status == "Pending") {
                             echo "selected";
                         }
+
                         ?>>
+
                         Pending
+
                     </option>
+
 
                     <option
                         value="Approved"
                         <?php
+
                         if ($status == "Approved") {
                             echo "selected";
                         }
+
                         ?>>
+
                         Approved
+
                     </option>
+
 
                     <option
                         value="Rejected"
                         <?php
+
                         if ($status == "Rejected") {
                             echo "selected";
                         }
+
                         ?>>
+
                         Rejected
+
                     </option>
 
+
                 </select>
+
 
             </form>
 
 
+
+            <!-- CLAIM TABLE TITLE -->
 
             <div class="section-row">
 
@@ -443,94 +474,171 @@ $claims =
 
 
 
+            <!-- CLAIM TABLE -->
+
             <div class="table-wrap">
 
                 <table>
 
+
                     <thead>
 
                         <tr>
+
                             <th>CLAIM ID</th>
+
                             <th>ITEM</th>
+
                             <th>CLAIMANT</th>
+
                             <th>STUDENT ID</th>
+
+                            <th>REASON</th>
+
+                            <th>DATE</th>
+
                             <th>STATUS</th>
+
                             <th>ACTION</th>
+
                         </tr>
 
                     </thead>
+
 
 
                     <tbody>
 
 
                     <?php
+
                     while (
                         $row =
                         $claims->fetch_assoc()
                     ) {
+
                     ?>
 
 
                         <tr>
 
 
+                            <!-- CLAIM ID -->
+
                             <td class="td-mono">
 
                                 CLM-<?php
+
                                 echo str_pad(
                                     $row["claim_id"],
                                     3,
                                     "0",
                                     STR_PAD_LEFT
                                 );
+
                                 ?>
 
                             </td>
 
+
+
+                            <!-- ITEM -->
 
                             <td class="td-bold">
 
                                 <?php
+
                                 echo htmlspecialchars(
                                     $row["title"]
                                 );
+
                                 ?>
 
                             </td>
 
+
+
+                            <!-- CLAIMANT -->
 
                             <td>
 
                                 <?php
+
                                 echo htmlspecialchars(
                                     $row["name"]
                                 );
+
                                 ?>
 
                             </td>
 
+
+
+                            <!-- STUDENT ID -->
 
                             <td class="td-mono">
 
                                 <?php
+
                                 echo htmlspecialchars(
                                     $row["student_id"]
                                 );
+
                                 ?>
 
                             </td>
 
 
+
+                            <!-- REASON -->
+
+                            <td>
+
+                                <?php
+
+                                echo htmlspecialchars(
+                                    $row["reason"]
+                                );
+
+                                ?>
+
+                            </td>
+
+
+
+                            <!-- CLAIM DATE -->
+
+                            <td class="td-mono">
+
+                                <?php
+
+                                echo date(
+                                    "d M Y",
+                                    strtotime(
+                                        $row["claim_date"]
+                                    )
+                                );
+
+                                ?>
+
+                            </td>
+
+
+
+                            <!-- STATUS -->
+
                             <td>
 
 
                                 <?php
+
                                 if (
                                     $row["status"]
                                     == "Pending"
                                 ) {
+
                                 ?>
+
 
                                     <span class="badge badge-pending">
                                         Pending
@@ -538,11 +646,14 @@ $claims =
 
 
                                 <?php
+
                                 } elseif (
                                     $row["status"]
                                     == "Approved"
                                 ) {
+
                                 ?>
+
 
                                     <span class="badge badge-approved">
                                         Approved
@@ -550,12 +661,16 @@ $claims =
 
 
                                 <?php
+
                                 } else {
+
                                 ?>
+
 
                                     <span class="badge badge-rejected">
                                         Rejected
                                     </span>
+
 
                                 <?php } ?>
 
@@ -563,28 +678,37 @@ $claims =
                             </td>
 
 
+
+                            <!-- ACTION -->
+
                             <td>
 
 
                                 <?php
+
                                 if (
                                     $row["status"]
                                     == "Pending"
                                 ) {
+
                                 ?>
 
 
                                     <div class="td-actions">
 
 
+                                        <!-- APPROVE -->
+
                                         <form
                                             action="../php/approve-claim.php"
                                             method="post">
+
 
                                             <input
                                                 type="hidden"
                                                 name="claim_id"
                                                 value="<?php echo $row["claim_id"]; ?>">
+
 
                                             <button
                                                 type="submit"
@@ -594,17 +718,23 @@ $claims =
 
                                             </button>
 
+
                                         </form>
 
+
+
+                                        <!-- REJECT -->
 
                                         <form
                                             action="../php/reject-claim.php"
                                             method="post">
 
+
                                             <input
                                                 type="hidden"
                                                 name="claim_id"
                                                 value="<?php echo $row["claim_id"]; ?>">
+
 
                                             <button
                                                 type="submit"
@@ -614,6 +744,7 @@ $claims =
 
                                             </button>
 
+
                                         </form>
 
 
@@ -621,7 +752,9 @@ $claims =
 
 
                                 <?php
+
                                 } else {
+
                                 ?>
 
 
@@ -647,6 +780,7 @@ $claims =
 
                     </tbody>
 
+
                 </table>
 
             </div>
@@ -655,6 +789,7 @@ $claims =
         </div>
 
     </main>
+
 
 </body>
 
