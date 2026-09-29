@@ -2,124 +2,195 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-        <link rel="stylesheet" href="../css/public.css">
+    <title>Login - UIU Lost & Found</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/public.css"
+    >
 
 </head>
 
+
 <body>
 
-    <!-- NAVBAR -->
-    <header>
-        <nav class="navbar">
 
-            <div class="logo">
-                <span class="logo-box">L&F</span>
-                <span>UIU Lost & Found</span>
-            </div>
+<!-- ==================================================
+     NAVBAR
+================================================== -->
 
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="browse.html">Browse Items</a>
-            </div>
+<header>
 
-            <div class="nav-buttons">
-                <a href="login.html" class="login-btn">Login</a>
-                <a href="register.html" class="register-btn">Register</a>
-            </div>
-
-        </nav>
-    </header>
+    <nav class="navbar">
 
 
-    <!-- LOGIN -->
-    <main class="form-page">
+        <div class="logo">
 
-        <div class="form-heading">
-
-            <div class="login-logo">
+            <span class="logo-box">
                 L&F
-            </div>
+            </span>
 
-            <h1>Welcome back</h1>
-
-            <p>Sign in with your UIU email</p>
+            <span>
+                UIU Lost & Found
+            </span>
 
         </div>
 
 
-        <div class="form-box">
-            <form action="../php/login.php" method="POST">
-            <label>UIU Email</label>
+        <div class="nav-links">
 
-            <input type="email"
-                name="email"
-                placeholder="Enter Email"
-                required>
-
-
-            <label>Password</label>
-
-            <input type="password"
-                name="password"
-                placeholder="Enter password"
-                required>
-
-
-            <a href="#" class="forgot">
-                Forgot password?
+            <a href="index.php">
+                Home
             </a>
 
-
-            <button type="submit" class="form-button">
-                Sign In
-            </button>
-            </form>
-
-
-            <p class="form-bottom">
-
-                No account?
-
-                <a href="register.html">
-                    Register
-                </a>
-
-            </p>
-
-
-            <hr>
-
-
-            <p class="demo-text">
-                Demo quick-login
-            </p>
-
-
-            <div class="demo-buttons">
-
-    <a href="../student_part1/student-dashboard.html">
-        Student Demo
-    </a>
-
-    <a href="../admin/admin-dashboard.html">
-        Admin Demo
-    </a>
-
-</div>
+            <a href="browse.php">
+                Browse Items
+            </a>
 
         </div>
 
-    </main>
+
+        <div class="nav-buttons">
+
+            <a
+                href="login.html"
+                class="login-btn"
+            >
+                Login
+            </a>
+
+            <a
+                href="register.html"
+                class="register-btn"
+            >
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
 
 
-    <footer>
-        © 2026 UIU Lost & Found Portal · United International University
-    </footer>
+
+<!-- ==================================================
+     LOGIN
+================================================== -->
+
+<main class="form-page">
+
+
+    <div class="form-heading">
+
+
+        <div class="login-logo">
+            L&F
+        </div>
+
+
+        <h1>
+            Welcome back
+        </h1>
+
+
+        <p>
+            Sign in with your UIU email
+        </p>
+
+
+    </div>
+
+
+
+    <div class="form-box">
+
+
+        <form
+            action="../php/login.php"
+            method="POST"
+        >
+
+
+            <label for="email">
+                UIU Email
+            </label>
+
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+
+            <button
+                type="submit"
+                class="form-button"
+            >
+                Sign In
+            </button>
+
+
+        </form>
+
+
+
+        <p class="form-bottom">
+
+            No account?
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </p>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+    © 2026 UIU Lost & Found Portal ·
+    United International University
+
+</footer>
+
 
 </body>
 
