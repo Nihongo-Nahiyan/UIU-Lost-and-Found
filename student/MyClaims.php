@@ -2,6 +2,9 @@
 
 include "php/db.php";
 
+// Temporary logged-in student for testing
+$uid = 1;
+
 $stmt = $conn->prepare("
     SELECT
         c.claim_id,
@@ -87,7 +90,7 @@ $claims = $stmt->get_result();
                         My Claims
                     </a>
 
-                    <a href="messages_stu1.html">
+                    <a href="messages.php">
                         Messages
                     </a>
 
@@ -130,9 +133,9 @@ $claims = $stmt->get_result();
 
             <?php
 
-            if ($result->num_rows > 0) {
+            if ($claims->num_rows > 0) {
 
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $claims->fetch_assoc()) {
 
             ?>
 
@@ -141,7 +144,7 @@ $claims = $stmt->get_result();
                         <div>
 
                             <div class="report-row-title">
-                                <?php echo htmlspecialchars($row['title']); ?>
+                                <?php echo htmlspecialchars($row['item_title']); ?>
                             </div>
 
                             <div class="report-row-meta">
@@ -152,25 +155,40 @@ $claims = $stmt->get_result();
                         </div>
 
 
-                        <?php
+                        <div>
 
-if ($row['status'] == 'Pending') {
+                            <?php
 
-    echo '<span class="badge badge-pending">Pending</span>';
+                            $status = strtolower(trim($row['status']));
 
-} elseif ($row['status'] == 'Approved') {
+                            if ($status == 'pending') {
 
-    echo '<span class="badge badge-approved">Approved</span>';
+                                echo '<span class="badge badge-pending">Pending</span>';
 
-    echo '<a href="messages.php?with=' . (int)$row['finder_id'] . '&found=' . (int)$row['found_id'] . '" class="btn btn-primary btn-sm">Contact Finder</a>';
+                            } elseif ($status == 'approved') {
 
-} elseif ($row['status'] == 'Rejected') {
+                                echo '<span class="badge badge-approved">Approved</span>';
 
-    echo '<span class="badge badge-rejected">Rejected</span>';
+                                echo '<a href="messages.php?with='
+                                    . (int)$row['finder_id']
+                                    . '&found='
+                                    . (int)$row['found_id']
+                                    . '" class="btn btn-primary btn-sm" style="margin-left: 10px;">'
+                                    . 'Contact Finder'
+                                    . '</a>';
 
-}
+                            } elseif ($status == 'rejected') {
 
-?> </div>
+                                echo '<span class="badge badge-rejected">Rejected</span>';
+
+                            }
+
+                            ?>
+
+                        </div>
+
+                    </div>
+
             <?php
 
                 }
