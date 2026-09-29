@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2026 at 06:45 PM
+-- Generation Time: Sep 29, 2026 at 08:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,21 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
-  `category_name` varchar(50) NOT NULL
+  `category_name` varchar(50) NOT NULL,
+  `icon` varchar(20) DEFAULT '?',
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`) VALUES
-(3, 'Accessories'),
-(4, 'Bags'),
-(6, 'Books'),
-(2, 'Documents'),
-(1, 'Electronics'),
-(5, 'Keys'),
-(7, 'Other');
+INSERT INTO `categories` (`category_id`, `category_name`, `icon`, `description`) VALUES
+(1, 'Electronics', '💻', 'Phones, laptops and chargers'),
+(2, 'Documents', '📄', 'ID cards and documents'),
+(3, 'Accessories', '⌚', 'Wallets, watches and accessories'),
+(4, 'Bags', '🎒', 'Backpacks and handbags'),
+(5, 'Keys', '🔑', 'Keys and keychains'),
+(6, 'Books', '📚', 'Books and notebooks'),
+(7, 'Other', '📦', 'Other lost and found items');
 
 -- --------------------------------------------------------
 
@@ -59,6 +61,13 @@ CREATE TABLE `claims` (
   `status` enum('Pending','Approved','Rejected') DEFAULT 'Pending',
   `claim_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `claims`
+--
+
+INSERT INTO `claims` (`claim_id`, `found_id`, `claimant_id`, `reason`, `status`, `claim_date`) VALUES
+(2, 4, 6, 'I have lost this laptop in the common room. Its brand is Asus VivoBook 15 X1504VA.', 'Approved', '2026-09-29 18:21:37');
 
 -- --------------------------------------------------------
 
@@ -85,8 +94,8 @@ CREATE TABLE `found_items` (
 --
 
 INSERT INTO `found_items` (`found_id`, `user_id`, `category_id`, `title`, `description`, `found_location`, `found_date`, `image`, `approval_status`, `claimed_status`, `created_at`) VALUES
-(1, 2, 3, 'Black Leather Wallet', 'Black leather wallet found near the library reading room.', 'Library 2F Reading Room', '2026-07-29', NULL, 'Approved', 'Unclaimed', '2026-09-07 15:22:11'),
-(2, 2, 1, 'Sony WH-1000XM5 Headphones', 'Black Sony WH-1000XM5 headphones found on campus.', 'Cafeteria Block B', '2026-07-27', NULL, 'Approved', 'Unclaimed', '2026-09-07 15:22:45');
+(3, 6, 4, 'Handbag', 'Found this on the seat.', 'Library', '2026-09-28', '08cd4eba75c0363667e5824b604c9ba6.jpg', 'Approved', 'Unclaimed', '2026-09-29 17:55:53'),
+(4, 7, 1, 'Laptop', 'Found a laptop behind the sofa.', 'Common Room (male)', '2026-09-30', 'b9ad4c303882a231b5e05fed3e06b7c1.jpg', 'Approved', 'Unclaimed', '2026-09-29 18:04:07');
 
 -- --------------------------------------------------------
 
@@ -112,7 +121,8 @@ CREATE TABLE `lost_items` (
 --
 
 INSERT INTO `lost_items` (`lost_id`, `user_id`, `category_id`, `title`, `description`, `last_location`, `lost_date`, `image`, `status`, `created_at`) VALUES
-(1, 1, 3, 'Black Leather Wallet', 'Black leather wallet with student ID and some cards inside.', 'Library 2F Reading Room', '2026-07-28', NULL, 'Lost', '2026-09-07 15:21:41');
+(3, 6, 3, 'Black wallet', 'Lost at the Khan\'s Kitchen area', 'Canteen', '2026-09-30', '91a218e35c5a4b5848f2f3b57b2e72e6.jpg', 'Pending', '2026-09-29 18:02:45'),
+(4, 7, 1, 'Sonny headphones', 'Found the headphones under the table on the floor.', 'Library (2nd floor)', '2026-09-29', '69b2cf36e503931137c675186b5a0029.jpg', 'Pending', '2026-09-29 18:06:48');
 
 -- --------------------------------------------------------
 
@@ -129,6 +139,15 @@ CREATE TABLE `messages` (
   `is_read` tinyint(1) DEFAULT 0,
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `sender_id`, `receiver_id`, `found_id`, `message`, `is_read`, `sent_time`) VALUES
+(2, 6, 7, 4, 'Hi I think you have found my laptop.', 1, '2026-09-29 18:23:18'),
+(3, 7, 6, 4, 'Alright meet me at the canteen tomorrow.', 0, '2026-09-29 18:33:49'),
+(4, 7, 6, 4, 'hello', 0, '2026-09-29 18:38:07');
 
 -- --------------------------------------------------------
 
@@ -152,9 +171,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `student_id`, `email`, `phone`, `password`, `role`, `created_at`) VALUES
-(1, 'Student One', '0112420244', 'student1@uiu.ac.bd', NULL, '123456', 'student', '2026-09-07 15:18:28'),
-(2, 'Nadia Rahman', '0112420201', 'nadia@uiu.ac.bd', NULL, '123456', 'student', '2026-09-07 15:19:05'),
-(3, 'nihongo nahiyan sarker udvash', '0112420250', 'nudvash2420250@bscse.uiu.ac.bd', '0178202008', 'nahiyan@160304', 'student', '2026-09-07 15:59:17');
+(6, 'user1', '0112539405', 'user1@uiu.ac.bd', '01782734974', '$2y$10$K1nKkR.MsZfcDgd8tGyiLuj83c5VxU62Xd7vdM.6gQFOu6J3U6Ly.', 'student', '2026-09-29 17:41:25'),
+(7, 'user3', '0112748503', 'user3@uiu.ac.bd', '01783920445', '$2y$10$zc9IfSIa9vWZaMh4e3Ehd.ldYSqF5/oK6GKiyr29EkqaoOpgfVP6O', 'student', '2026-09-29 17:42:50'),
+(8, 'Admin', '123', 'admin@uiu.ac.bd', '01568388037', '$2y$10$bNnnlZdIK1T9YmbwoI2f0OCUQueaHUwPvIt52sfMX5lM.tg09ur9y', 'admin', '2026-09-29 17:58:49');
 
 --
 -- Indexes for dumped tables
@@ -222,31 +241,31 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `claims`
 --
 ALTER TABLE `claims`
-  MODIFY `claim_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `claim_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `found_items`
 --
 ALTER TABLE `found_items`
-  MODIFY `found_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `found_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lost_items`
 --
 ALTER TABLE `lost_items`
-  MODIFY `lost_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `lost_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
