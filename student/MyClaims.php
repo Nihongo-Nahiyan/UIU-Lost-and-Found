@@ -2,17 +2,33 @@
 
 include "php/db.php";
 
-$sql = "SELECT claims.claim_id,
-               found_items.title,
-               claims.status,
-               claims.claim_date
-        FROM claims
-        JOIN found_items
-        ON claims.found_id = found_items.found_id
-        WHERE claims.claim_id IN (1, 2, 5)
-        ORDER BY claims.claim_id ASC";
-        
-$result = $conn->query($sql);
+$stmt = $conn->prepare("
+    SELECT
+        c.claim_id,
+        c.found_id,
+        c.claimant_id,
+        c.status,
+        c.claim_date,
+        f.title AS item_title,
+        f.found_location,
+        f.user_id AS finder_id,
+        finder.name AS finder_name,
+        claimant.name AS claimant_name
+    FROM claims c
+    JOIN found_items f
+        ON c.found_id = f.found_id
+    JOIN users finder
+        ON f.user_id = finder.user_id
+    JOIN users claimant
+        ON c.claimant_id = claimant.user_id
+    WHERE c.claimant_id = ?
+    ORDER BY c.claim_date DESC
+");
+
+$stmt->bind_param("i", $uid);
+$stmt->execute();
+
+$claims = $stmt->get_result();
 
 ?>
 
@@ -138,24 +154,23 @@ $result = $conn->query($sql);
 
                         <?php
 
-                        if ($row['status'] == 'Pending') {
+if ($row['status'] == 'Pending') {
 
-                            echo '<span class="badge badge-pending">Pending</span>';
+    echo '<span class="badge badge-pending">Pending</span>';
 
-                        } elseif ($row['status'] == 'Approved') {
+} elseif ($row['status'] == 'Approved') {
 
-                            echo '<span class="badge badge-approved">Approved</span>';
+    echo '<span class="badge badge-approved">Approved</span>';
 
-                        } elseif ($row['status'] == 'Rejected') {
+    echo '<a href="messages.php?with=' . (int)$row['finder_id'] . '&found=' . (int)$row['found_id'] . '" class="btn btn-primary btn-sm">Contact Finder</a>';
 
-                            echo '<span class="badge badge-rejected">Rejected</span>';
+} elseif ($row['status'] == 'Rejected') {
 
-                        }
+    echo '<span class="badge badge-rejected">Rejected</span>';
 
-                        ?>
+}
 
-                    </div>
-
+?> </div>
             <?php
 
                 }
