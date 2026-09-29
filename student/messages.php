@@ -2,9 +2,8 @@
 
 include "php/db.php";
 
-
-// Temporary logged-in student
-// Student One = user_id 1
+session_start();
+// Temporary logged-in student for testing
 $uid = 1;
 // --------------------------------------------------
 // DELETE MESSAGE
@@ -45,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_message"])) {
 
     exit;
 }
+
+
 // --------------------------------------------------
 // SEND MESSAGE
 // --------------------------------------------------
@@ -82,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_message"])) {
             echo json_encode([
                 "success" => false
             ]);
-
         }
 
         $stmt->close();
@@ -99,169 +99,272 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_message"])) {
 
 
 // --------------------------------------------------
+// GET APPROVED CLAIM CONVERSATIONS
+// --------------------------------------------------
+
+// Show conversations for BOTH:
+// 1. The student who made the claim
+// 2. The student who found the item
+
+$conversationStmt = $conn->prepare(
+    "SELECT
+        c.claim_id,
+        c.found_id,
+        c.claimant_id,
+
+        f.user_id AS finder_id,
+        f.title,
+
+        claimer.name AS claimer_name,
+        finder.name AS finder_name,
+
+        CASE
+            WHEN c.claimant_id = ? THEN f.user_id
+            ELSE c.claimant_id
+        END AS other_id,
+
+        CASE
+            WHEN c.claimant_id = ? THEN finder.name
+            ELSE claimer.name
+        END AS other_name,
+
+        (
+            SELECT MAX(m.sent_time)
+            FROM messages m
+            WHERE m.found_id = c.found_id
+            AND (
+                (m.sender_id = c.claimant_id
+                 AND m.receiver_id = f.user_id)
+
+                OR
+
+                (m.sender_id = f.user_id
+                 AND m.receiver_id = c.claimant_id)
+            )
+        ) AS last_message_time
+
+    FROM claims c
+
+    INNER JOIN found_items f
+        ON c.found_id = f.found_id
+
+    INNER JOIN users claimer
+        ON c.claimant_id = claimer.user_id
+
+    INNER JOIN users finder
+        ON f.user_id = finder.user_id
+
+    WHERE
+        (c.claimant_id = ? OR f.user_id = ?)
+        AND LOWER(c.status) = 'approved'
+
+    ORDER BY
+        COALESCE(
+            (
+                SELECT MAX(m2.sent_time)
+                FROM messages m2
+                WHERE m2.found_id = c.found_id
+            ),
+            c.claim_id
+        ) DESC"
+);
+
+$conversationStmt->bind_param(
+    "iiii",
+    $uid,
+    $uid,
+    $uid,
+    $uid
+);
+
+$conversationStmt->execute();
+
+$conversationResult =
+    $conversationStmt->get_result();
+
+$conversations = [];
+
+while (
+    $row =
+    $conversationResult->fetch_assoc()
+) {
+    $conversations[] = $row;
+}
+
+$conversationStmt->close();
+
+
+// --------------------------------------------------
 // SELECT CONVERSATION
 // --------------------------------------------------
 
+// No demo/default conversation.
+// If no conversation is selected, the first approved
+// claim will automatically be opened.
+
 $with = isset($_GET["with"])
     ? intval($_GET["with"])
-    : 2;
+    : 0;
 
 $found = isset($_GET["found"])
     ? intval($_GET["found"])
-    : 1;
-    // --------------------------------------------------
-// GET FAHIM AND TANVIR USER IDS
+    : 0;
+
+
+// --------------------------------------------------
+// VALIDATE SELECTED CONVERSATION
 // --------------------------------------------------
 
-$fahimRow = $conn->query(
-    "SELECT user_id
-     FROM users
-     WHERE student_id = '0112420205'
-     LIMIT 1"
-)->fetch_assoc();
+$selectedConversation = null;
 
-$fahimId = $fahimRow
-    ? intval($fahimRow["user_id"])
-    : 0;
+foreach ($conversations as $chat) {
 
-
-$tanvirRow = $conn->query(
-    "SELECT user_id
-     FROM users
-     WHERE student_id = '0112420204'
-     LIMIT 1"
-)->fetch_assoc();
-
-$tanvirId = $tanvirRow
-    ? intval($tanvirRow["user_id"])
-    : 0;
-// --------------------------------------------------
-// GET FAHIM AND TANVIR USER IDS
-// --------------------------------------------------
-
-$fahimRow = $conn->query(
-    "SELECT user_id
-     FROM users
-     WHERE student_id = '0112420205'
-     LIMIT 1"
-)->fetch_assoc();
-
-$fahimId = $fahimRow
-    ? intval($fahimRow["user_id"])
-    : 0;
+    if (
+        intval($chat["other_id"]) == $with &&
+        intval($chat["found_id"]) == $found
+    ) {
+        $selectedConversation = $chat;
+        break;
+    }
+}
 
 
-$tanvirRow = $conn->query(
-    "SELECT user_id
-     FROM users
-     WHERE student_id = '0112420204'
-     LIMIT 1"
-)->fetch_assoc();
+// If no valid conversation was selected,
+// automatically open the first approved claim.
 
-$tanvirId = $tanvirRow
-    ? intval($tanvirRow["user_id"])
-    : 0;
+if ($selectedConversation === null && !empty($conversations)) {
+
+    $selectedConversation = $conversations[0];
+
+    $with = intval($selectedConversation["other_id"]);
+    $found = intval($selectedConversation["found_id"]);
+}
+
 
 // --------------------------------------------------
 // GET OTHER USER
 // --------------------------------------------------
 
-$stmt = $conn->prepare(
-    "SELECT user_id, name
-     FROM users
-     WHERE user_id = ?"
-);
+$other = null;
 
-$stmt->bind_param("i", $with);
+if ($selectedConversation) {
 
-$stmt->execute();
+    $stmt = $conn->prepare(
+        "SELECT user_id, name
+         FROM users
+         WHERE user_id = ?"
+    );
 
-$other = $stmt->get_result()->fetch_assoc();
+    $stmt->bind_param("i", $with);
 
-$stmt->close();
+    $stmt->execute();
+
+    $other = $stmt->get_result()->fetch_assoc();
+
+    $stmt->close();
+}
 
 
 // --------------------------------------------------
 // GET FOUND ITEM
 // --------------------------------------------------
 
-$stmt = $conn->prepare(
-    "SELECT found_id, title
-     FROM found_items
-     WHERE found_id = ?"
-);
+$item = null;
 
-$stmt->bind_param("i", $found);
+if ($selectedConversation) {
 
-$stmt->execute();
+    $stmt = $conn->prepare(
+        "SELECT found_id, title
+         FROM found_items
+         WHERE found_id = ?"
+    );
 
-$item = $stmt->get_result()->fetch_assoc();
+    $stmt->bind_param("i", $found);
 
-$stmt->close();
+    $stmt->execute();
+
+    $item = $stmt->get_result()->fetch_assoc();
+
+    $stmt->close();
+}
 
 
 // --------------------------------------------------
 // GET MESSAGES
 // --------------------------------------------------
 
-$stmt = $conn->prepare(
-    "SELECT
-        message_id,
-        sender_id,
-        receiver_id,
-        message,
-        is_read,
-        sent_time
+$messages = [];
 
-     FROM messages
+if ($other && $item) {
 
-     WHERE found_id = ?
+    $stmt = $conn->prepare(
+        "SELECT
+            message_id,
+            sender_id,
+            receiver_id,
+            message,
+            is_read,
+            sent_time
 
-     AND (
-        (sender_id = ? AND receiver_id = ?)
-        OR
-        (sender_id = ? AND receiver_id = ?)
-     )
+         FROM messages
 
-    ORDER BY sent_time ASC, message_id ASC"
-);
+         WHERE found_id = ?
 
-$stmt->bind_param(
-    "iiiii",
-    $found,
-    $uid,
-    $with,
-    $with,
-    $uid
-);
+         AND (
+            (sender_id = ? AND receiver_id = ?)
+            OR
+            (sender_id = ? AND receiver_id = ?)
+         )
 
-$stmt->execute();
+         ORDER BY sent_time ASC, message_id ASC"
+    );
 
-$messages = $stmt->get_result();
+    $stmt->bind_param(
+        "iiiii",
+        $found,
+        $uid,
+        $with,
+        $with,
+        $uid
+    );
+
+    $stmt->execute();
+
+    $messageResult = $stmt->get_result();
+
+    while ($row = $messageResult->fetch_assoc()) {
+        $messages[] = $row;
+    }
+
+    $stmt->close();
+}
 
 
 // --------------------------------------------------
 // MARK RECEIVED MESSAGES AS READ
 // --------------------------------------------------
 
-$stmt_read = $conn->prepare(
-    "UPDATE messages
-     SET is_read = 1
-     WHERE sender_id = ?
-     AND receiver_id = ?
-     AND found_id = ?"
-);
+if ($other && $item) {
 
-$stmt_read->bind_param(
-    "iii",
-    $with,
-    $uid,
-    $found
-);
+    $stmt_read = $conn->prepare(
+        "UPDATE messages
+         SET is_read = 1
+         WHERE sender_id = ?
+         AND receiver_id = ?
+         AND found_id = ?"
+    );
 
-$stmt_read->execute();
+    $stmt_read->bind_param(
+        "iii",
+        $with,
+        $uid,
+        $found
+    );
 
-$stmt_read->close();
+    $stmt_read->execute();
+
+    $stmt_read->close();
+}
 
 ?>
 
@@ -293,10 +396,18 @@ $stmt_read->close();
 
         <!-- LOGO -->
 
-       <div class="nav-logo">
-    <div class="logo-box">L&F</div>
-    <div class="brand">UIU Lost <em>&</em> Found</div>
-</div>
+        <div class="nav-logo">
+
+            <div class="logo-box">
+                L&F
+            </div>
+
+            <div class="brand">
+                UIU Lost <em>&</em> Found
+            </div>
+
+        </div>
+
 
         <!-- NAVIGATION -->
 
@@ -380,121 +491,140 @@ $stmt_read->close();
 
 
             <!-- ================================= -->
-            <!-- LEFT SIDE - EXISTING CONVERSATIONS -->
+            <!-- LEFT SIDE - DYNAMIC CONVERSATIONS -->
             <!-- ================================= -->
 
-          <div class="msg-list">
+            <div class="msg-list">
 
 
-    <!-- NADIA - BLACK LEATHER WALLET -->
+                <?php if (!empty($conversations)): ?>
 
-    <a href="messages.php?with=2&found=1">
 
-        <div class="msg-item
-            <?php
-            if ($with == 2 && $found == 1) {
-                echo "active";
-            }
-            ?>">
+                    <?php foreach ($conversations as $chat): ?>
 
-            <div class="msg-item-name">
 
-                <span>
-                    Nadia Rahman
-                </span>
+                        <a href="messages.php?with=<?php echo intval($chat["other_id"]); ?>&found=<?php echo intval($chat["found_id"]); ?>">
 
-                <span class="msg-date">
-                    Aug 29
-                </span>
+
+                            <div class="msg-item
+                                <?php
+
+                               if (
+    intval($chat["other_id"]) == $with &&
+    intval($chat["found_id"]) == $found
+)
+                                 {
+                                    echo "active";
+                                }
+
+                                ?>">
+
+
+                                <div class="msg-item-name">
+
+
+                                    <span>
+
+                                        <?php
+
+                                        echo htmlspecialchars(
+                                            $chat["other_name"]
+                                        );
+
+                                        ?>
+
+                                    </span>
+
+
+                                    <span class="msg-date">
+
+                                        <?php
+
+                                        if (!empty($chat["last_message_time"])) {
+
+                                            echo date(
+                                                "M d",
+                                                strtotime(
+                                                    $chat["last_message_time"]
+                                                )
+                                            );
+
+                                        } else {
+
+                                            echo "Approved";
+
+                                        }
+
+                                        ?>
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <div class="msg-item-topic">
+
+                                    <?php
+
+                                    echo htmlspecialchars(
+                                        $chat["title"]
+                                    );
+
+                                    ?>
+
+                                </div>
+
+
+                                <div class="msg-item-prev">
+
+                                    <?php
+
+                                    if (
+                                        !empty($chat["last_message_time"])
+                                    ) {
+
+                                        echo "Continue conversation";
+
+                                    } else {
+
+                                        echo "Chat about your approved claim";
+
+                                    }
+
+                                    ?>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </a>
+
+
+                    <?php endforeach; ?>
+
+
+                <?php else: ?>
+
+
+                    <div class="msg-item">
+
+                        <div class="msg-item-prev">
+
+                            No approved claims yet.
+
+                        </div>
+
+                    </div>
+
+
+                <?php endif; ?>
+
 
             </div>
 
-            <div class="msg-item-topic">
-                Black Leather Wallet
-            </div>
-
-            <div class="msg-item-prev">
-                Yes, I found it near the library.
-            </div>
-
-        </div>
-
-    </a>
-
-
-    <!-- FAHIM - HP LAPTOP CHARGER -->
-
-    <a href="messages.php?with=<?php echo $fahimId; ?>&found=2">
-
-        <div class="msg-item
-            <?php
-            if ($with == $fahimId && $found == 2) {
-                echo "active";
-            }
-            ?>">
-
-            <div class="msg-item-name">
-
-                <span>
-                    Fahim Hossain
-                </span>
-
-                <span class="msg-date">
-                    Aug 28
-                </span>
-
-            </div>
-
-            <div class="msg-item-topic">
-                HP Laptop Charger
-            </div>
-
-            <div class="msg-item-prev">
-                When can I collect the charger?
-            </div>
-
-        </div>
-
-    </a>
-
-
-    <!-- TANVIR - UIU STUDENT ID CARD -->
-
-    <a href="messages.php?with=<?php echo $tanvirId; ?>&found=3">
-
-        <div class="msg-item
-            <?php
-            if ($with == $tanvirId && $found == 3) {
-                echo "active";
-            }
-            ?>">
-
-            <div class="msg-item-name">
-
-                <span>
-                    Tanvir Ahmed
-                </span>
-
-                <span class="msg-date">
-                    Aug 27
-                </span>
-
-            </div>
-
-            <div class="msg-item-topic">
-                UIU Student ID Card
-            </div>
-
-            <div class="msg-item-prev">
-                Thank you for finding my ID.
-            </div>
-
-        </div>
-
-    </a>
-
-
-</div>
 
             <!-- ================================= -->
             <!-- RIGHT SIDE CHAT -->
@@ -546,70 +676,91 @@ $stmt_read->close();
                          id="messageBody">
 
 
-                        <?php
-
-                        while ($row =
-                               $messages->fetch_assoc()):
+                        <?php if (!empty($messages)): ?>
 
 
-                            $myMessage =
-                                ($row["sender_id"] == $uid);
-
-                        ?>
-
-
-                            <div class="bubble
-                                <?php
-
-                                echo $myMessage
-                                    ? "me"
-                                    : "them";
-
-                                ?>">
+                            <?php foreach ($messages as $row): ?>
 
 
                                 <?php
 
-                                echo nl2br(
-                                    htmlspecialchars(
-                                        $row["message"]
-                                    )
-                                );
+                                $myMessage =
+                                    ($row["sender_id"] == $uid);
 
                                 ?>
 
 
-                                <div class="bubble-time">
+                                <div class="bubble
+                                    <?php
+
+                                    echo $myMessage
+                                        ? "me"
+                                        : "them";
+
+                                    ?>">
+
 
                                     <?php
 
-                                    echo date(
-                                        "h:i A",
-                                        strtotime(
-                                            $row["sent_time"]
+                                    echo nl2br(
+                                        htmlspecialchars(
+                                            $row["message"]
                                         )
                                     );
 
                                     ?>
 
+
+                                    <div class="bubble-time">
+
+                                        <?php
+
+                                        echo date(
+                                            "h:i A",
+                                            strtotime(
+                                                $row["sent_time"]
+                                            )
+                                        );
+
+                                        ?>
+
+                                    </div>
+
+
+                                    <?php if ($myMessage): ?>
+
+
+                                        <button
+                                            type="button"
+                                            class="delete-message-btn"
+                                            data-message-id="<?php echo intval($row["message_id"]); ?>"
+                                        >
+
+                                            Delete
+
+                                        </button>
+
+
+                                    <?php endif; ?>
+
+
                                 </div>
-                                <?php if ($myMessage): ?>
 
-    <button
-        type="button"
-        class="delete-message-btn"
-        data-message-id="<?php echo $row["message_id"]; ?>"
-    >
-        Delete
-    </button>
 
-<?php endif; ?>
+                            <?php endforeach; ?>
 
+
+                        <?php else: ?>
+
+
+                            <div class="bubble them">
+
+                                No messages yet. You can start the conversation.
 
                             </div>
 
 
-                        <?php endwhile; ?>
+                        <?php endif; ?>
 
 
                     </div>
@@ -642,6 +793,22 @@ $stmt_read->close();
                     </div>
 
 
+                <?php else: ?>
+
+
+                    <div class="msg-body">
+
+                        <div class="bubble them">
+
+                            Your approved claims will appear here.
+                            Once an admin approves a claim,
+                            you can chat with the finder.
+
+                        </div>
+
+                    </div>
+
+
                 <?php endif; ?>
 
 
@@ -657,18 +824,21 @@ $stmt_read->close();
 </main>
 
 
+<?php if ($other && $item): ?>
+
 <script>
 
 const receiverId =
-    <?php echo $with; ?>;
+    <?php echo intval($with); ?>;
 
 const foundId =
-    <?php echo $found; ?>;
+    <?php echo intval($found); ?>;
 
 </script>
 
-
 <script src="js/messages.js"></script>
+
+<?php endif; ?>
 
 
 </body>
