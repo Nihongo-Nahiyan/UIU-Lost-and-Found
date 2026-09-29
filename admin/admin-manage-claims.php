@@ -3,6 +3,43 @@
 include "../php/db.php";
 
 
+if(isset($_POST['approve_claim'])){
+
+    $claim_id = $_POST['claim_id'];
+
+    $sql = "
+        UPDATE claims
+        SET status='Approved'
+        WHERE claim_id='$claim_id'
+    ";
+
+    $conn->query($sql);
+
+    header("Location: admin-manage-claims.php");
+    exit();
+
+}
+
+
+if(isset($_POST['reject_claim'])){
+
+    $claim_id = $_POST['claim_id'];
+
+    $sql = "
+        UPDATE claims
+        SET status='Rejected'
+        WHERE claim_id='$claim_id'
+    ";
+
+    $conn->query($sql);
+
+    header("Location: admin-manage-claims.php");
+    exit();
+
+}
+
+
+
 /* PENDING ITEM COUNT */
 
 $result = $conn->query("
@@ -699,9 +736,7 @@ $claims =
 
                                         <!-- APPROVE -->
 
-                                        <form
-                                            action="../php/approve-claim.php"
-                                            method="post">
+                                       <form method="post">
 
 
                                             <input
@@ -710,12 +745,11 @@ $claims =
                                                 value="<?php echo $row["claim_id"]; ?>">
 
 
-                                            <button
-                                                type="submit"
-                                                class="btn btn-success btn-xs">
-
-                                                Approve
-
+                                            <button 
+                                                type="submit" 
+                                                name="approve_claim"
+                                                class="btn btn-success">
+                                                    Approve
                                             </button>
 
 
@@ -725,9 +759,7 @@ $claims =
 
                                         <!-- REJECT -->
 
-                                        <form
-                                            action="../php/reject-claim.php"
-                                            method="post">
+                                        <form method="post">
 
 
                                             <input
@@ -736,13 +768,12 @@ $claims =
                                                 value="<?php echo $row["claim_id"]; ?>">
 
 
-                                            <button
-                                                type="submit"
-                                                class="btn btn-danger btn-xs">
-
-                                                Reject
-
-                                            </button>
+                                <button 
+                                    type="submit" 
+                                    name="reject_claim"
+                                    class="btn btn-danger">
+                                    Reject
+                                </button>
 
 
                                         </form>
