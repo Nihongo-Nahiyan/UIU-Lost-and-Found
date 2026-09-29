@@ -251,6 +251,12 @@ a {
 
     margin-bottom: 15px;
 }
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
 .item-card .found,
 .item-card .lost {
@@ -495,6 +501,12 @@ a {
 
     margin-bottom: 15px;
 }
+.browse-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
 .browse-card .found,
 .browse-card .lost {
@@ -720,6 +732,12 @@ a {
     font-size: 100px;
 
     border-radius: 8px;
+}
+.detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .detail-info {
