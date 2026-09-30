@@ -1,10 +1,15 @@
 <?php
 
-include "php/db.php";
-
 session_start();
-// Temporary logged-in student for testing
-$uid = 1;
+
+require_once "../php/db.php";
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../public/login.html");
+    exit();
+}
+
+$uid = (int) $_SESSION["user_id"];
 // --------------------------------------------------
 // DELETE MESSAGE
 // --------------------------------------------------
@@ -239,6 +244,10 @@ if ($selectedConversation === null && !empty($conversations)) {
     $with = intval($selectedConversation["other_id"]);
     $found = intval($selectedConversation["found_id"]);
 }
+if (!isset($_GET["with"]) && !empty($conversations)) {
+    header("Location: messages.php?with=$with&found=$found");
+    exit();
+}
 
 
 // --------------------------------------------------
@@ -381,7 +390,7 @@ if ($other && $item) {
 
     <title>Messages - UIU Lost & Found</title>
 
-    <link rel="stylesheet" href="student.css">
+    <link rel="stylesheet" href="../css/student.css">
 
 </head>
 
@@ -413,19 +422,19 @@ if ($other && $item) {
 
         <div class="nav-links">
 
-            <a href="student-dashboard.html">
+            <a href="../student_part1/student-dashboard.php">
                 Dashboard
             </a>
 
-            <a href="student-browse.html">
+            <a href="../student_part1/student-browse.php">
                 Browse
             </a>
 
-            <a href="report-lost.html">
+            <a href="../student_part1/report-lost.php">
                 Report Lost
             </a>
 
-            <a href="report-found.html">
+            <a href="../student_part1/report-found.php">
                 Report Found
             </a>
 
@@ -433,10 +442,9 @@ if ($other && $item) {
                 My Claims
             </a>
 
-            <a href="messages.php"
-               class="active">
-                Messages
-            </a>
+            <a href="messages.php">
+    Messages
+</a>
 
         </div>
 
@@ -449,7 +457,7 @@ if ($other && $item) {
                 👤 Student
             </span>
 
-            <a href="index.html"
+            <a href="../public/index.php"
                class="btn btn-secondary btn-sm">
 
                 Logout
@@ -836,7 +844,7 @@ const foundId =
 
 </script>
 
-<script src="js/messages.js"></script>
+<script src="messages.js"></script>
 
 <?php endif; ?>
 

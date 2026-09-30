@@ -1,9 +1,15 @@
 <?php
 
-include "php/db.php";
+session_start();
 
-// Temporary logged-in student for testing
-$uid = 1;
+require_once "../php/db.php";
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../public/login.html");
+    exit();
+}
+
+$uid = (int) $_SESSION["user_id"];
 
 $stmt = $conn->prepare("
     SELECT
@@ -44,7 +50,7 @@ $claims = $stmt->get_result();
 
     <title>My Claims - UIU Lost & Found</title>
 
-    <link rel="stylesheet" href="student.css">
+    <link rel="stylesheet" href="../css/student.css">
 </head>
 
 <body>
@@ -70,19 +76,19 @@ $claims = $stmt->get_result();
 
                 <div class="nav-links">
 
-                    <a href="../student_part1/student-dashboard.html">
+                    <a href="../student_part1/student-dashboard.php">
                         Dashboard
                     </a>
 
-                    <a href="../student_part1/student-browse.html">
+                    <a href="../student_part1/student-browse.php">
                         Browse
                     </a>
 
-                    <a href="../student_part1/report-lost.html">
+                    <a href="../student_part1/report-lost.php">
                         Report Lost
                     </a>
 
-                    <a href="../student_part1/report-found.html">
+                    <a href="../student_part1/report-found.php">
                         Report Found
                     </a>
 
@@ -103,7 +109,7 @@ $claims = $stmt->get_result();
                         👤 Student
                     </span>
 
-                    <a href="../public/index.html" class="btn btn-secondary btn-sm">
+                    <a href="../public/index.php" class="btn btn-secondary btn-sm">
                         Logout
                     </a>
 
@@ -155,40 +161,25 @@ $claims = $stmt->get_result();
                         </div>
 
 
-                        <div>
+                        <?php
 
-                            <?php
+if ($row['status'] == 'Pending') {
 
-                            $status = strtolower(trim($row['status']));
+    echo '<span class="badge badge-pending">Pending</span>';
 
-                            if ($status == 'pending') {
+} elseif ($row['status'] == 'Approved') {
 
-                                echo '<span class="badge badge-pending">Pending</span>';
+    echo '<span class="badge badge-approved">Approved</span>';
 
-                            } elseif ($status == 'approved') {
+    echo '<a href="messages.php?with=' . (int)$row['finder_id'] . '&found=' . (int)$row['found_id'] . '" class="btn btn-primary btn-sm">Contact Finder</a>';
 
-                                echo '<span class="badge badge-approved">Approved</span>';
+} elseif ($row['status'] == 'Rejected') {
 
-                                echo '<a href="messages.php?with='
-                                    . (int)$row['finder_id']
-                                    . '&found='
-                                    . (int)$row['found_id']
-                                    . '" class="btn btn-primary btn-sm" style="margin-left: 10px;">'
-                                    . 'Contact Finder'
-                                    . '</a>';
+    echo '<span class="badge badge-rejected">Rejected</span>';
 
-                            } elseif ($status == 'rejected') {
+}
 
-                                echo '<span class="badge badge-rejected">Rejected</span>';
-
-                            }
-
-                            ?>
-
-                        </div>
-
-                    </div>
-
+?> </div>
             <?php
 
                 }
