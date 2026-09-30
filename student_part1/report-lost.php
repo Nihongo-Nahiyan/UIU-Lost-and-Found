@@ -463,14 +463,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </a>
 
 
-            <a href="../student/MyClaims.html">
+            <a href="../student/MyClaims.php">
 
                 My Claims
 
             </a>
 
 
-            <a href="../student/messages_stu1.html">
+            <a href="../student/messages.php">
 
                 Messages
 
